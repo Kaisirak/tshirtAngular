@@ -1,0 +1,53 @@
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-shopping-cart"></i> Your Cart</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+        	<tbody>
+        		<tr class="tr-header">
+        			<td>SIZE</td>
+        			<td>COLOR</td>
+        			<td>MODEL</td>
+        			<td>DESIGN</td>
+        			<td>PRICE</td>
+        			<td></td>
+        		</tr>
+        		<tr ng-repeat="obj in prodCtrl.cart">
+        			<td>
+        				<span ng-bind="obj.size"></span>
+        			</td>
+        			<td>
+        				<span ng-bind="obj.color"></span>
+        			</td>
+        			<td>
+        				<span ng-bind="obj.prod"></span>
+        			</td>
+        			<td>
+        				<span ng-bind="(obj.back === true?'Front and Back':'Front Only')"></span>
+        			</td>
+        			<td>
+        				<span ng-bind="obj.price | currency"></span>
+        			</td>
+        			<td><a style="font-weight: bold; color: #ff4f4f; cursor: pointer;" ng-click="prodCtrl.removeFromCart($index)"><i class="fa fa-remove"></i> Remove</a></td>
+        		</tr>
+        	</tbody>
+        	<tfoot>
+        		<tr>
+        			<td colspan="4" style="text-align:right;"><b>TOTAL</b></td>
+        			<td><b><span ng-bind="prodCtrl.total() | currency"></span></b></td>
+        			<td></td>
+        		</tr>
+        	</tfoot>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="prodCtrl.placeOrder()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>

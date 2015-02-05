@@ -1,0 +1,45 @@
+<ul class="nav nav-tabs" role="tablist" style="margin-bottom: 15px;">
+	<li ng-class="{active: tabCtrl.isSet(1)}"><a href ng-click="tabCtrl.setTab(1)">Options</a></li>
+	<li ng-class="{active: tabCtrl.isSet(2)}"><a href ng-click="tabCtrl.setTab(2)">Customize</a></li>
+	<li ng-class="{active: tabCtrl.isSet(3)}"><a href ng-click="tabCtrl.setTab(3)">Designs</a></li>
+</ul>
+<div ng-show="tabCtrl.isSet(1)" class="angular-smooth-anim">
+	<div class="well well-lg">
+		<div class="form-group">
+			<label>Model</label>
+			<select class="form-control" ng-model="prodCtrl.curSelectedId" ng-change="prodCtrl.update()">
+				<option ng-repeat="type in prodCtrl.types" value="{{type.id}}">{{type.name}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Size</label>
+			<select class="form-control" ng-model="prodCtrl.curSelectedSize" ng-options="size for size in prodCtrl.curSelected.sizes"></select>
+		</div>
+		<div class="checkbox">
+			<label><input id="btnBack" type="checkbox" name="back" value="back" ng-model="prodCtrl.isBackDesign" ng-click="prodCtrl.showFront()"> <b>Design Back</b></label>
+		</div>
+		<ul class="color-container">
+			<li ng-repeat="color in prodCtrl.colors" ng-click="prodCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
+		</ul>
+	</div>
+</div>
+<div ng-show="tabCtrl.isSet(2)" class="angular-smooth-anim">
+	<div class="well well-lg">
+		<div class="form-group">
+			<div class="input-file-container btn btn-lg btn-primary" style="width:100%"><i class="fa fa-file-picture-o"></i> Add Image<input id="imgLoader" type="file"/></div>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-lg btn-primary" type="button" id="crtBtn" style="width:100%"><i class="fa fa-pencil"></i> Add Text</button>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-lg btn-primary" type="button" id="delBtn" style="width:100%"><i class="fa fa-trash"></i> Remove</button>
+		</div>
+	</div>
+</div>
+<div ng-show="tabCtrl.isSet(3)" class="angular-smooth-anim">
+	<div class="well well-lg">
+		<div class="form-group">
+
+		</div>
+	</div>
+</div>
