@@ -19,11 +19,20 @@
 	<!-- Product Designer Core CSS -->
 	<link href="css/colpick.css" rel="stylesheet">
 
+  <!-- jQuery Version 1.11.0 -->
+  <script src="js/jquery-1.11.0.js"></script>
+
+  <!-- FabricJS and Designer Core -->
+  <script src="js/fabric.min.js"></script>
+  <script src="js/colpick.js"></script>
+  <script src="js/product-designer.js"></script>
+
 	<!-- AngularJS Core -->
 	<script src="js/angular.min.js"></script>
 	<script src="js/angular-animate.min.js"></script>
+  <script src="js/angular-route.min.js"></script>
 	<script src="js/controllers.js"></script>
-	
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,7 +42,7 @@
 
 </head>
 
-<body>
+<body ng-app="main-app" ng-controller="ProductController as prodCtrl">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-default" role="navigation">
@@ -52,9 +61,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Stickers</a></li>
-                    <li><a href="#">iPhone Cases</a></li>
-                    <li><a href="#">Flyers</a></li>
+                    <li><a href="#/detail">Custom Shirt</a></li>
                 </ul>
                 <button type="button" class="show-cart hidden-xs"><i class="fa fa-shopping-cart"></i> My Cart</button>
             </div>
@@ -64,75 +71,17 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" ng-app="main-app" id="onlinedesigner">
-    	<div class="row">
-    		<div class="col-xs-12">
-    			<h2 class="header-title">Custom T-Shirt</h2>
-    			<hr>
-    		</div>
-    	</div>
-        <div class="row" ng-controller="ProductController as prodCtrl">
-            <div class="col-sm-3">
-                <tableft></tableft>
-            </div>
-            
-            <!-- START ONLINE DESIGNER -->
-            
-			<div class="col-sm-6">
-				<div class="edit-text-box">
-					<div class="btn-group">
-						<span class="input-group" style="max-width: 190px;">
-							<span class="input-group-addon"><i class="fa fa-font"></i></span>
-							<div class="btn-group" style="width: 100%; max-width: 160px;">
-								<button id="txtFamily" class="btn btn-default dropdown-toggle font-dropdown" data-toggle="dropdown" disabled>
-								<span class="caret" style="position: relative; left: 97%;"></span><span id="txtFont">Times New Roman</span>
-								</button>
-								<ul id="fontSelector" class="dropdown-menu" role="menu">
-								</ul>
-							</div>
-						</span>
-					</div>
-					<div class="btn-group btn-group-mar">
-					  <button type="button" id="txtWeight" data-toggle="tooltip" title="Bold" class="btn btn-default btn-tooltip" disabled><i class="fa fa-bold"></i></button>
-					  <button type="button" id="txtDeco" data-toggle="tooltip" title="Underline" class="btn btn-default btn-tooltip" disabled><i class="fa fa-underline"></i></button>
-					  <button type="button" id="txtStyle" data-toggle="tooltip" title="Italic" class="btn btn-default btn-tooltip" disabled><i class="fa fa-italic"></i></button>
-					  <button type="button" id="txtColor" class="btn btn-default" style="padding: 5px 8px;"><div id="colorpick-outer" disabled><span id="colorpick-inner"></span></div></button>
-					</div>
-					<div class="btn-group btn-group-mar">
-						<button type="button" id="stbBtn" data-toggle="tooltip" title="Send Backward" class="btn btn-default btn-tooltip" disabled><i class="fa fa-angle-double-up"></i></button>
-						<button type="button" id="stfBtn" data-toggle="tooltip" title="Bring Forward" class="btn btn-default btn-tooltip" disabled><i class="fa fa-angle-double-down"></i></button>
-						<button type="button" id="mkCpy" data-toggle="tooltip" title="Clone Object" class="btn btn-default btn-tooltip" disabled><i class="fa fa-copy"></i></button>
-					</div>
-				</div>
-				<div class="behind-product">
-					<img id="preloadFront" src="img/crew_front.png" width="1" height="1"/>
-					<img id="preloadBack" src="img/crew_back.png" width="1" height="1"/>
-					<canvas id="c" width="225" height="430"></canvas>
-				</div>
-				<div class="btn-group btn-side">
-					<button type="button" id="rectoBtn" ng-click="prodCtrl.showFront()" class="btn btn-info active">FRONT</button>
-					<button ng-show="prodCtrl.isBackDesign" ng-click="prodCtrl.showBack()" type="button" id="versoBtn" class="btn btn-info">BACK</button>
-				</div>
-            </div>
-            
-            <!-- END ONLINE DESIGNER -->
-            
-			<div class="col-sm-3 well well-lg">
-                <cart></cart>
-            </div>
-            <modalcart></modalcart>
-        </div>
-    </div>
+
+    <div class="container" ng-view></div>
+
     <!-- /Page Content -->
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <!-- Modal Content -->
 
-	<!-- FabricJS and Designer Core -->
-	<script src="js/fabric.min.js"></script>
-	<script src="js/colpick.js"></script>
-	<script src="js/product-designer.js"></script>
-	
+    <modalcart></modalcart>
+
+    <!-- /Modal Content -->
+
 	<!-- Bootstrap and Custom Design Core -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
