@@ -56,14 +56,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">T-Shirt Business</a>
-                <button type="button" class="show-cart visible-xs"><i class="fa fa-shopping-cart"></i> My Cart</button>
+                <button type="button" ng-click="prodCtrl.openCart()" class="show-cart visible-xs"><i class="fa fa-shopping-cart"></i> My Cart ({{prodCtrl.cart.length}})</button>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#/detail">Custom Shirt</a></li>
                 </ul>
-                <button type="button" class="show-cart hidden-xs"><i class="fa fa-shopping-cart"></i> My Cart</button>
+                <button type="button" ng-click="prodCtrl.openCart()" class="show-cart hidden-xs"><i class="fa fa-shopping-cart"></i> My Cart ({{prodCtrl.cart.length}})</button>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -84,7 +84,6 @@
 
 	<!-- Bootstrap and Custom Design Core -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
 
 </body>
 

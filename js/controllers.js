@@ -38,6 +38,14 @@ function queryProd(myArray, myId)
 										{name: 'Kaki', id: 10, value: '#779416'},
 										{name: 'Yellow', id: 11, value: '#faee05'}
 									];
+
+		this.productList = [{name: 'T-Shirts', path: 'tshirt'},
+												{name: 'Long Sleeves', path: 'longsleeve'},
+												{name: 'Stickers', path: 'sticker'},
+												{name: 'Mugs', path: 'mug'},
+												{name: 'Sweat Shirts', path: 'sweatshirt'},
+												{name: 'Hoodies', path: 'hoodie'}]
+
 		this.frontPrice = 5;
 		this.backPrice = 5;
 		this.curSelectedId = 0;
@@ -51,6 +59,10 @@ function queryProd(myArray, myId)
 
 		this.completeName = function() {
 			return (this.curSelectedSize + " " + this.colors[this.selectedColor].name + " " + this.curSelected.name);
+		};
+
+		this.openCart = function(){
+			$('#cartModal').modal('show');
 		};
 
 		this.update = function() {
