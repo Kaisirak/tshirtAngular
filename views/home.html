@@ -16,3 +16,15 @@
     </a>
   </div>
 </div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="product-homepage list-inline">
+      <li ng-repeat="product in prodCtrl.productCompleteList"><a href="#/{{product.path}}">{{product.name}}</a></li>
+    </ul>
+  </div>
+</div>
+
+<hr>

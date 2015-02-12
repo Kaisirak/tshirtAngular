@@ -159,6 +159,15 @@ a {
 	color: #bababa;
 }
 
+.product-homepage{
+	padding-left: 0px;
+}
+
+.product-homepage li{
+	font-size: 24px;
+	margin-right: 10px;
+}
+
 .over-title{
 	display: block;
 	position:relative;

@@ -46,6 +46,15 @@ function queryProd(myArray, myId)
 												{name: 'Sweat Shirts', path: 'sweatshirt'},
 												{name: 'Hoodies', path: 'hoodie'}]
 
+		this.productCompleteList = [{name: 'T-Shirts', path: 'tshirt'},
+																{name: 'Long Sleeves', path: 'longsleeve'},
+																{name: 'Stickers', path: 'sticker'},
+																{name: 'Mugs', path: 'mug'},
+																{name: 'Sweat Shirts', path: 'sweatshirt'},
+																{name: 'Hoodies', path: 'hoodie'},
+																{name: 'Pens', path: 'pen'},
+																{name: 'Underwears', path: 'underwear'}];
+
 		this.frontPrice = 5;
 		this.backPrice = 5;
 		this.curSelectedId = 0;
