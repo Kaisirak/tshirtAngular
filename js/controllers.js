@@ -25,8 +25,8 @@ function pathalize(name) {
 
 	app.controller('ProductController', function($http) {
 		
-		this.productCompleteList = [{}];
-		this.productList = [{}];
+		this.productCompleteList = [];
+		this.productList = [];
 
 		var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
 
@@ -36,10 +36,13 @@ function pathalize(name) {
 		  	success(function(data, status, headers, config) {
 		  		var products = angular.fromJson(data.response);
 		    	angular.forEach(products, function(value, key) {
-				  myThis.productCompleteList.push( { name: value['name'], path : pathalize(value['name']) } );
+		    		if (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')
+		    			console.log('Url undefined');
+				  myThis.productCompleteList.push( { name: value['name'], path : pathalize(value['name']),
+				  'image' : (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')? value['image'].url:'http://placehold.it/180' } );
 				});
 				myThis.productList = myThis.productCompleteList;
-		    	console.log(myThis.productCompleteList);
+		    	console.log(myThis.productList);
 			}).
 		  	error(function(data, status, headers, config) {
 		    	console.log(data);
