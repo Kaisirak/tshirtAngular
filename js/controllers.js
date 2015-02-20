@@ -26,15 +26,19 @@ function pathalize(name) {
 	app.controller('ProductController', function($http) {
 		
 		this.productCompleteList = [{}];
-		
+		this.productList = [{}];
+
+		var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
+
 		myThis = this;
 
-		$http.get('http://tshirt.local/categories').
+		$http.get('http://api.shirtfull.com/categories').
 		  	success(function(data, status, headers, config) {
 		  		var products = angular.fromJson(data.response);
 		    	angular.forEach(products, function(value, key) {
 				  myThis.productCompleteList.push( { name: value['name'], path : pathalize(value['name']) } );
 				});
+				myThis.productList = myThis.productCompleteList;
 		    	console.log(myThis.productCompleteList);
 			}).
 		  	error(function(data, status, headers, config) {
@@ -59,15 +63,14 @@ function pathalize(name) {
 										{name: 'Kaki', id: 10, value: '#779416'},
 										{name: 'Yellow', id: 11, value: '#faee05'}
 									];
-
+		/*
 		this.productList = [{name: 'T-Shirts', path: 'tshirt'},
 												{name: 'Long Sleeves', path: 'longsleeve'},
 												{name: 'Stickers', path: 'sticker'},
 												{name: 'Mugs', path: 'mug'},
 												{name: 'Sweat Shirts', path: 'sweatshirt'},
 												{name: 'Hoodies', path: 'hoodie'}]
-												/*
-		
+												
 		this.productCompleteList = [{name: 'T-Shirts', path: 'tshirt'},
 										{name: 'Long Sleeves', path: 'longsleeve'},
 										{name: 'Stickers', path: 'sticker'},
