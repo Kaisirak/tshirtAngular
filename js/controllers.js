@@ -11,7 +11,7 @@ function queryProd(myArray, myId)
 }
 
 function pathalize(name) {
-	return (angular.lowercase(name)).replace(/ /g, "_");
+	return (angular.lowercase(name)).replace(/ /g, "-");
 }
 
 (function(){
