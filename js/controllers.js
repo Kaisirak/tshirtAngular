@@ -10,6 +10,10 @@ function queryProd(myArray, myId)
 	return (myArray[0]);
 }
 
+function pathalize(name) {
+	return (angular.lowercase(name)).replace(" ", "_");
+}
+
 (function(){
 	var app = angular.module('main-app', ['ngAnimate', 'ngRoute']);
 
@@ -19,7 +23,24 @@ function queryProd(myArray, myId)
 		.when("/detail", {templateUrl: "views/detail.html"})
 	}]);
 
-	app.controller('ProductController', function() {
+	app.controller('ProductController', function($http) {
+		
+		this.productCompleteList = [{}];
+		
+		myThis = this;
+
+		$http.get('http://tshirt.local/categories').
+		  	success(function(data, status, headers, config) {
+		  		var products = angular.fromJson(data.response);
+		    	angular.forEach(products, function(value, key) {
+				  myThis.productCompleteList.push( { name: value['name'], path : pathalize(value['name']) } );
+				});
+		    	console.log(myThis.productCompleteList);
+			}).
+		  	error(function(data, status, headers, config) {
+		    	console.log(data);
+	  	});
+
 		this.types = [{name: 'Short Sleeve', id: 1, price: 10, sizes: ['SM', 'LG', 'XL'], img_path: ['crew_front.png', 'crew_back.png']},
 									{name: 'Long Sleeve', id: 0, price: 15, sizes: ['SM', 'MED', 'LG'], img_path: ['long_front.png', 'long_back.png']} ,
 									{name: 'Hoodie', id: 2, price: 19, sizes: ['SM','MED', 'XL','XXL'], img_path: ['hoodie_front.png', 'hoodie_back.png']},
@@ -45,15 +66,18 @@ function queryProd(myArray, myId)
 												{name: 'Mugs', path: 'mug'},
 												{name: 'Sweat Shirts', path: 'sweatshirt'},
 												{name: 'Hoodies', path: 'hoodie'}]
-
+												/*
+		
 		this.productCompleteList = [{name: 'T-Shirts', path: 'tshirt'},
-																{name: 'Long Sleeves', path: 'longsleeve'},
-																{name: 'Stickers', path: 'sticker'},
-																{name: 'Mugs', path: 'mug'},
-																{name: 'Sweat Shirts', path: 'sweatshirt'},
-																{name: 'Hoodies', path: 'hoodie'},
-																{name: 'Pens', path: 'pen'},
-																{name: 'Underwears', path: 'underwear'}];
+										{name: 'Long Sleeves', path: 'longsleeve'},
+										{name: 'Stickers', path: 'sticker'},
+										{name: 'Mugs', path: 'mug'},
+										{name: 'Sweat Shirts', path: 'sweatshirt'},
+										{name: 'Hoodies', path: 'hoodie'},
+										{name: 'Pens', path: 'pen'},
+										{name: 'Underwears', path: 'underwear'}];
+		*/		  	
+		
 
 		this.frontPrice = 5;
 		this.backPrice = 5;
