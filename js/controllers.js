@@ -34,7 +34,7 @@ function pathalize(name) {
 
 		$http.get('http://api.shirtfull.com/categories').
 		  	success(function(data, status, headers, config) {
-		  		var products = angular.fromJson(data.response);
+		  		var products = angular.fromJson(data);
 		    	angular.forEach(products, function(value, key) {
 		    		if (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')
 		    			console.log('Url undefined');
