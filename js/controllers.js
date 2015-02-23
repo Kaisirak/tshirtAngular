@@ -20,11 +20,11 @@ function pathalize(name) {
 	app.config(["$routeProvider", function($routeProvider){
 		$routeProvider.when("/", {redirectTo: "/home"})
 		.when("/home", {templateUrl: "views/home.html"})
-		.when("/detail", {templateUrl: "views/detail.html"})
+		.when("/designer/:product", {templateUrl: "views/detail.html"})
 	}]);
 
 	app.controller('ProductController', function($http) {
-		
+
 		this.productCompleteList = [];
 		this.productList = [];
 
@@ -73,7 +73,7 @@ function pathalize(name) {
 												{name: 'Mugs', path: 'mug'},
 												{name: 'Sweat Shirts', path: 'sweatshirt'},
 												{name: 'Hoodies', path: 'hoodie'}]
-												
+
 		this.productCompleteList = [{name: 'T-Shirts', path: 'tshirt'},
 										{name: 'Long Sleeves', path: 'longsleeve'},
 										{name: 'Stickers', path: 'sticker'},
@@ -82,8 +82,8 @@ function pathalize(name) {
 										{name: 'Hoodies', path: 'hoodie'},
 										{name: 'Pens', path: 'pen'},
 										{name: 'Underwears', path: 'underwear'}];
-		*/		  	
-		
+		*/
+
 
 		this.frontPrice = 5;
 		this.backPrice = 5;
