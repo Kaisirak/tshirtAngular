@@ -17,10 +17,12 @@ function pathalize(name) {
 (function(){
 	var app = angular.module('main-app', ['ngAnimate', 'ngRoute']);
 
-	app.config(["$routeProvider", function($routeProvider){
+	app.config(["$routeProvider" , "$locationProvider", function($routeProvider, $locationProvider){
 		$routeProvider.when("/", {redirectTo: "/home"})
 		.when("/home", {templateUrl: "views/home.html"})
-		.when("/designer/:product", {templateUrl: "views/detail.html"})
+		.when("/designer/:product", {templateUrl: "views/detail.html"});
+
+		$locationProvider.html5Mode(true);
 	}]);
 
 	app.controller('ProductController', function($http) {
