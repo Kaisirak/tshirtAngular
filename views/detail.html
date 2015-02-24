@@ -1,4 +1,4 @@
-<div id="onlinedesigner">
+<div id="onlinedesigner" ng-controller="DesignerController as designerCtrl">
   <div class="row">
     <div class="col-xs-12">
       <h2 class="header-title">Custom T-Shirt</h2>
@@ -44,8 +44,8 @@
         <canvas id="c" width="225" height="430" fabric-canvas></canvas>
       </div>
       <div class="btn-group btn-side">
-        <button type="button" id="rectoBtn" ng-click="prodCtrl.showFront()" class="btn btn-info active">FRONT</button>
-        <button ng-show="prodCtrl.isBackDesign" ng-click="prodCtrl.showBack()" type="button" id="versoBtn" class="btn btn-info">BACK</button>
+        <button type="button" id="rectoBtn" ng-click="designerCtrl.showFront()" class="btn btn-info active">FRONT</button>
+        <button ng-show="designerCtrl.isBackDesign" ng-click="designerCtrl.showBack()" type="button" id="versoBtn" class="btn btn-info">BACK</button>
       </div>
     </div>
 

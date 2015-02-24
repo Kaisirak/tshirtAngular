@@ -2,22 +2,22 @@
 <table class="table">
 	<tbody>
 		<tr>
-			<td><span ng-bind="prodCtrl.completeName()"></span></td>
-			<td align="right"><span ng-bind="prodCtrl.curSelected.price | currency"></span></td>
+			<td><span ng-bind="mainCtrl.completeName()"></span></td>
+			<td align="right"><span ng-bind="mainCtrl.curSelected.price | currency"></span></td>
 		</tr>
 		<tr>
 			<td>Front Design</td>
-			<td align="right"><span ng-bind="prodCtrl.frontPrice | currency"></span></td>
+			<td align="right"><span ng-bind="mainCtrl.frontPrice | currency"></span></td>
 		</tr>
-		<tr ng-show="prodCtrl.isBackDesign">
+		<tr ng-show="mainCtrl.isBackDesign">
 			<td>Back Design</td>
-			<td align="right"><span ng-bind="prodCtrl.backPrice | currency"></span></td>
+			<td align="right"><span ng-bind="mainCtrl.backPrice | currency"></span></td>
 		</tr>
 		<tr>
 			<td><strong>Total</strong></td>
-			<td align="right"><strong><span ng-bind="prodCtrl.curSelected.price + prodCtrl.frontPrice + (prodCtrl.isBackDesign == true?prodCtrl.backPrice:0) | currency"></span></strong></td>
+			<td align="right"><strong><span ng-bind="mainCtrl.curSelected.price + mainCtrl.frontPrice + (mainCtrl.isBackDesign == true?mainCtrl.backPrice:0) | currency"></span></strong></td>
 		</tr>
 	</tbody>
 </table>
 
-<button class="btn btn-addcart" ng-click="prodCtrl.addToCart()"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+<button class="btn btn-addcart" ng-click="mainCtrl.addToCart()"><i class="fa fa-shopping-cart"></i> Add to Cart</button>

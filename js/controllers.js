@@ -25,7 +25,9 @@ function pathalize(name) {
 		$locationProvider.html5Mode(true);
 	}]);
 
-	app.controller('ProductController', function($http) {
+	
+
+	app.controller('MainController', function($http) {
 
 		this.productCompleteList = [];
 		this.productList = [];
@@ -48,26 +50,9 @@ function pathalize(name) {
 			}).
 		  	error(function(data, status, headers, config) {
 		    	console.log(data);
-	  	});
+	  		});
 
-		this.types = [{name: 'Short Sleeve', id: 1, price: 10, sizes: ['SM', 'LG', 'XL'], img_path: ['crew_front.png', 'crew_back.png']},
-									{name: 'Long Sleeve', id: 0, price: 15, sizes: ['SM', 'MED', 'LG'], img_path: ['long_front.png', 'long_back.png']} ,
-									{name: 'Hoodie', id: 2, price: 19, sizes: ['SM','MED', 'XL','XXL'], img_path: ['hoodie_front.png', 'hoodie_back.png']},
-									{name: 'Tank Top', id: 3, price: 14, sizes: ['XS','SM', 'MED'], img_path: ['tank_front.png', 'tank_back.png']}
-								 ];
-		this.colors = [	{name: 'Salmon', id: 0, value: '#ffbe9f'},
-										{name: 'Night Black', id: 1, value: '#333333'},
-										{name: 'White', id: 2, value: '#ffffff'},
-										{name: 'Irish Green', id: 3, value: '#12910f'},
-										{name: 'pink', id: 4, value: '#f988d1'},
-										{name: 'Fushia', id: 5, value:' #de0763'},
-										{name: 'Dark Green', id: 6, value: '#347663'},
-										{name: 'Cyan', id: 7, value: '#66ebeb'},
-										{name: 'Sky Blue', id:8, value: '#04baff'},
-										{name: 'Dark Blue', id: 9, value: '#0e3d83'},
-										{name: 'Kaki', id: 10, value: '#779416'},
-										{name: 'Yellow', id: 11, value: '#faee05'}
-									];
+		
 		/*
 		this.productList = [{name: 'T-Shirts', path: 'tshirt'},
 												{name: 'Long Sleeves', path: 'longsleeve'},
@@ -86,67 +71,10 @@ function pathalize(name) {
 										{name: 'Underwears', path: 'underwear'}];
 		*/
 
-
-		this.frontPrice = 5;
-		this.backPrice = 5;
-		this.curSelectedId = 0;
-		this.isBackDesign = false;
-		this.curSelected = this.types[0];
-		this.curSelectedSize = this.curSelected.sizes[0];
-		this.selectedColor = 2;
-
 		this.cart = [];
 		// METHODS
-
-		this.completeName = function() {
-			return (this.curSelectedSize + " " + this.colors[this.selectedColor].name + " " + this.curSelected.name);
-		};
-
 		this.openCart = function(){
 			$('#cartModal').modal('show');
-		};
-
-		this.update = function() {
-			this.curSelected = queryProd(this.types, this.curSelectedId);
-			if ($("#versoBtn").hasClass('active') == false)
-			{
-				$("#preloadFront").one('load', function() {
-					$(".behind-product").css("background-image", "url('" + $(this).attr('src') + "')");
-					$("#preloadBack").attr('src', $(this).attr('src').replace('_front', '_back'));
-	        	})
-	        	.attr('src', "img/" + this.curSelected.img_path[0]) //Set the source so it caches
-	        	.each(function() {
-	        		if(this.complete)
-	        			$(this).trigger('load');
-				});
-			}
-			else
-			{
-				$("#preloadFront").one('load', function() {
-					$(".behind-product").css("background-image", "url('" + $(this).attr('src') + "')");
-					$("#preloadFront").attr('src', $(this).attr('src').replace('_back', '_front'));
-	        	})
-	        	.attr('src', "img/" + this.curSelected.img_path[1]) //Set the source so it caches
-	        	.each(function() {
-	        		if(this.complete)
-	        			$(this).trigger('load');
-				});
-			}
-
-			//$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[($("#versoBtn").hasClass('active') == true?1:0)] + "')");
-			this.curSelectedSize = this.curSelected.sizes[0];
-		};
-
-		this.setColor = function(col) {
-			this.selectedColor = col;
-		};
-
-		this.showFront = function() {
-			$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[0] + "')");
-		};
-
-		this.showBack = function() {
-			$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[1] + "')");
 		};
 
 		this.addToCart = function() {
@@ -170,6 +98,107 @@ function pathalize(name) {
 			console.log("BOO ORDR PLACED");
 		};
 	});
+
+	app.controller('DesignerController', ["$http", "$routeParams", function($http,$routeParams) {
+			
+		//this.productCompleteList = [];
+		//this.productList = [];
+		this.productsTest = [];
+
+		//var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
+
+		console.log('Params: '+$routeParams.product);
+		var myThis = this;
+
+		$http.get('http://api.shirtfull.com/categories/'+$routeParams.product).
+			success(function(data, status, headers, config) {
+				console.log(data);
+				var log = [];
+				angular.forEach(data.products, function(value, key, obj) {
+				  this.push({id: value.id, name:value.name});
+				}, log);
+				console.log(log);
+				myThis.productsTest = log;
+			}).
+			error(function(data, status, headers, config) {
+			 	console.log(data);
+	  	});
+
+		this.types = [
+			{name: 'Short Sleeve', id: 1, price: 10, sizes: ['SM', 'LG', 'XL'], img_path: ['crew_front.png', 'crew_back.png']},
+			{name: 'Long Sleeve', id: 0, price: 15, sizes: ['SM', 'MED', 'LG'], img_path: ['long_front.png', 'long_back.png']} ,
+			{name: 'Hoodie', id: 2, price: 19, sizes: ['SM','MED', 'XL','XXL'], img_path: ['hoodie_front.png', 'hoodie_back.png']},
+			{name: 'Tank Top', id: 3, price: 14, sizes: ['XS','SM', 'MED'], img_path: ['tank_front.png', 'tank_back.png']}
+		];
+	
+		this.colors = [	
+			{name: 'Salmon', id: 0, value: '#ffbe9f'},
+			{name: 'Night Black', id: 1, value: '#333333'},
+			{name: 'White', id: 2, value: '#ffffff'},
+			{name: 'Irish Green', id: 3, value: '#12910f'},
+			{name: 'pink', id: 4, value: '#f988d1'},
+			{name: 'Fushia', id: 5, value:' #de0763'},
+			{name: 'Dark Green', id: 6, value: '#347663'},
+			{name: 'Cyan', id: 7, value: '#66ebeb'},
+			{name: 'Sky Blue', id:8, value: '#04baff'},
+			{name: 'Dark Blue', id: 9, value: '#0e3d83'},
+			{name: 'Kaki', id: 10, value: '#779416'},
+			{name: 'Yellow', id: 11, value: '#faee05'}
+		];
+		
+		this.frontPrice = 5;
+		this.backPrice = 5;
+		this.curSelectedId = 0;
+		this.isBackDesign = false;
+		this.curSelected = this.types[0];
+		this.curSelectedSize = this.curSelected.sizes[0];
+		this.selectedColor = 2;
+		this.setColor = function(col) {
+			this.selectedColor = col;
+		};
+
+		this.showFront = function() {
+			$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[0] + "')");
+		};
+
+		this.showBack = function() {
+			$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[1] + "')");
+		};
+
+		this.completeName = function() {
+			return (this.curSelectedSize + " " + this.colors[this.selectedColor].name + " " + this.curSelected.name);
+		};
+
+		this.update = function() {
+			this.curSelected = queryProd(this.types, this.curSelectedId);
+			if ($("#versoBtn").hasClass('active') == false) {
+				$("#preloadFront").one('load', function() {
+					$(".behind-product").css("background-image", "url('" + $(this).attr('src') + "')");
+					$("#preloadBack").attr('src', $(this).attr('src').replace('_front', '_back'));
+		       	})
+		    	.attr('src', "img/" + this.curSelected.img_path[0]) //Set the source so it caches
+		        .each(function() {
+		        	if(this.complete)
+		        		$(this).trigger('load');
+				});
+			}
+			else {
+				$("#preloadFront").one('load', function() {
+					$(".behind-product").css("background-image", "url('" + $(this).attr('src') + "')");
+					$("#preloadFront").attr('src', $(this).attr('src').replace('_back', '_front'));
+		        })
+		        .attr('src', "img/" + this.curSelected.img_path[1]) //Set the source so it caches
+		        .each(function() {
+		        if(this.complete)
+		        	$(this).trigger('load');
+				});
+			}
+			//$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[($("#versoBtn").hasClass('active') == true?1:0)] + "')");
+			this.curSelectedSize = this.curSelected.sizes[0];
+		};
+	}])
+
+
 
 	app.controller('TabController', function() {
 		this.currentTab = 1;

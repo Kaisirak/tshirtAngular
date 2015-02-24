@@ -16,7 +16,7 @@
         			<td>PRICE</td>
         			<td></td>
         		</tr>
-        		<tr ng-repeat="obj in prodCtrl.cart">
+        		<tr ng-repeat="obj in mainCtrl.cart">
         			<td>
         				<span ng-bind="obj.size"></span>
         			</td>
@@ -32,13 +32,13 @@
         			<td>
         				<span ng-bind="obj.price | currency"></span>
         			</td>
-        			<td><a style="font-weight: bold; color: #ff4f4f; cursor: pointer;" ng-click="prodCtrl.removeFromCart($index)"><i class="fa fa-remove"></i> Remove</a></td>
+        			<td><a style="font-weight: bold; color: #ff4f4f; cursor: pointer;" ng-click="mainCtrl.removeFromCart($index)"><i class="fa fa-remove"></i> Remove</a></td>
         		</tr>
         	</tbody>
         	<tfoot>
         		<tr>
         			<td colspan="4" style="text-align:right;"><b>TOTAL</b></td>
-        			<td><b><span ng-bind="prodCtrl.total() | currency"></span></b></td>
+        			<td><b><span ng-bind="mainCtrl.total() | currency"></span></b></td>
         			<td></td>
         		</tr>
         	</tfoot>
@@ -46,7 +46,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="prodCtrl.placeOrder()">Proceed to Checkout</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="mainCtrl.placeOrder()">Proceed to Checkout</button>
       </div>
     </div>
   </div>

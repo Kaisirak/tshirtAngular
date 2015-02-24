@@ -6,20 +6,27 @@
 <div ng-show="tabCtrl.isSet(1)" class="angular-smooth-anim">
 	<div class="well well-lg">
 		<div class="form-group">
+			<label>Products</label>
+			<select class="form-control">
+				<option ng-repeat="product in designerCtrl.productsTest" value="{{product.id}}">{{product.name}}</option>
+			</select>
+		</div>
+		<div class="form-group">
 			<label>Model</label>
-			<select class="form-control" ng-model="prodCtrl.curSelectedId" ng-change="prodCtrl.update()">
-				<option ng-repeat="type in prodCtrl.types" value="{{type.id}}">{{type.name}}</option>
+			<select class="form-control" ng-model="designerCtrl.curSelectedId" ng-change="designerCtrl.update()">
+				
+				<option ng-repeat="type in designerCtrl.types" value="{{type.id}}">{{type.name}}</option>
 			</select>
 		</div>
 		<div class="form-group">
 			<label>Size</label>
-			<select class="form-control" ng-model="prodCtrl.curSelectedSize" ng-options="size for size in prodCtrl.curSelected.sizes"></select>
+			<select class="form-control" ng-model="designerCtrl.curSelectedSize" ng-options="size for size in designerCtrl.curSelected.sizes"></select>
 		</div>
 		<div class="checkbox">
-			<label><input id="btnBack" type="checkbox" name="back" value="back" ng-model="prodCtrl.isBackDesign" ng-click="prodCtrl.showFront()"> <b>Design Back</b></label>
+			<label><input id="btnBack" type="checkbox" name="back" value="back" ng-model="designerCtrl.isBackDesign" ng-click="designerCtrl.showFront()"> <b>Design Back</b></label>
 		</div>
 		<ul class="color-container">
-			<li ng-repeat="color in prodCtrl.colors" ng-click="prodCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
+			<li ng-repeat="color in designerCtrl.colors" ng-click="designerCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
 		</ul>
 	</div>
 </div>
