@@ -10,6 +10,30 @@ function queryProd(myArray, myId)
 	return (myArray[0]);
 }
 
+function rgbToHsl(rgb){
+		var r = parseFloat(rgb.slice(0,2));
+		var g = parseFloat(rgb.slice(2,4));
+		var b = parseFloat(rgb.slice(4,6));
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+
+    return [h, s, l];
+}
+
 function pathalize(name) {
 	return (angular.lowercase(name)).replace(/ /g, "-");
 }
@@ -25,7 +49,7 @@ function pathalize(name) {
 		$locationProvider.html5Mode(true);
 	}]);
 
-	
+
 
 	app.controller('MainController', function($http,$scope) {
 
@@ -47,7 +71,7 @@ function pathalize(name) {
 		    			myThis.productCompleteList.push( { category: key, name: value['name'], path : value['productId'],
 				  			'image' : (typeof value['image'] !== 'undefined')? value['image']:'http://placehold.it/180' } );
 		    		});
-				  
+
 				});
 				$scope.productList= myThis.productList = myThis.productCompleteList;
 			}).
@@ -55,7 +79,7 @@ function pathalize(name) {
 		    	console.log(data);
 	  		});
 
-		
+
 		/*
 		this.productList = [{name: 'T-Shirts', path: 'tshirt'},
 												{name: 'Long Sleeves', path: 'longsleeve'},
@@ -103,7 +127,7 @@ function pathalize(name) {
 	});
 
 	app.controller('DesignerController', ["$http", "$routeParams", "$scope", function($http,$routeParams,$scope) {
-			
+
 		this.productsSameCategory = [];
 		console.log('Designer <>');
 		this.selectedDescription = "";
@@ -132,7 +156,7 @@ function pathalize(name) {
 			{name: 'Tank Top', id: 3, price: 14, sizes: ['XS','SM', 'MED'], img_path: ['tank_front.png', 'tank_back.png']}
 		];
 		/*
-		this.colors = [	
+		this.colors = [
 			{name: 'Salmon', id: 0, value: '#ffbe9f'},
 			{name: 'Night Black', id: 1, value: '#333333'},
 			{name: 'White', id: 2, value: '#ffffff'},
@@ -146,7 +170,7 @@ function pathalize(name) {
 			{name: 'Kaki', id: 10, value: '#779416'},
 			{name: 'Yellow', id: 11, value: '#faee05'}
 		];*/
-		
+
 		this.frontPrice = 5;
 		this.backPrice = 5;
 		this.curSelectedId = 0;
@@ -171,7 +195,7 @@ function pathalize(name) {
 		};
 
 		this.update = function() {
-			
+
 			this.curSelected = queryProd(this.types, this.curSelectedId);
 			if ($("#versoBtn").hasClass('active') == false) {
 				$("#preloadFront").one('load', function() {
