@@ -12,7 +12,7 @@
 			</select>
 		</div>
 		<ul class="color-container">
-			<li ng-repeat="color in designerCtrl.colors | orderBy:'hsl.h'" ng-click="designerCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
+			<li ng-repeat="color in designerCtrl.colors | orderBy:'hsl.l'" ng-click="designerCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
 		</ul>
 		<div class="form-group">
 			<label>Size</label>
