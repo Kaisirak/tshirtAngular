@@ -20,14 +20,14 @@ function pathalize(name) {
 	app.config(["$routeProvider" , "$locationProvider", function($routeProvider, $locationProvider){
 		$routeProvider.when("/", {redirectTo: "/home"})
 		.when("/home", {templateUrl: "views/home.html"})
-		.when("/designer/:product", {templateUrl: "views/detail.html"});
+		.when("/designer/:category/:product", {templateUrl: "views/detail.html"});
 
 		$locationProvider.html5Mode(true);
 	}]);
 
 	
 
-	app.controller('MainController', function($http) {
+	app.controller('MainController', function($http,$scope) {
 
 		this.productCompleteList = [];
 		this.productList = [];
@@ -36,17 +36,20 @@ function pathalize(name) {
 
 		myThis = this;
 
-		$http.get('http://api.shirtfull.com/categories').
+		//$http.get('http://api.shirtfull.com/products').
+		$http.get('http://tshirt.local/products').
 		  	success(function(data, status, headers, config) {
 		  		var products = angular.fromJson(data);
-		    	angular.forEach(products, function(value, key) {
-		    		if (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')
-		    			console.log('Url undefined');
-				  myThis.productCompleteList.push( { name: value['name'], path : pathalize(value['name']),
-				  'image' : (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')? value['image'].url:'http://placehold.it/180' } );
+		    	angular.forEach(products, function(product, key) {
+		    		angular.forEach(product, function(value, key2) {
+		    			if (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')
+		    				console.log('Url undefined');
+		    			myThis.productCompleteList.push( { category: key, name: value['name'], path : value['productId'],
+				  			'image' : (typeof value['image'] !== 'undefined')? value['image']:'http://placehold.it/180' } );
+		    		});
+				  
 				});
-				myThis.productList = myThis.productCompleteList;
-		    	console.log(myThis.productList);
+				$scope.productList= myThis.productList = myThis.productCompleteList;
 			}).
 		  	error(function(data, status, headers, config) {
 		    	console.log(data);
@@ -99,26 +102,24 @@ function pathalize(name) {
 		};
 	});
 
-	app.controller('DesignerController', ["$http", "$routeParams", function($http,$routeParams) {
+	app.controller('DesignerController', ["$http", "$routeParams", "$scope", function($http,$routeParams,$scope) {
 			
-		//this.productCompleteList = [];
-		//this.productList = [];
-		this.productsTest = [];
-
+		this.productsSameCategory = [];
+		console.log('Designer <>');
+		this.selectedDescription = "";
+		this.colors = [];
 		//var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
-
-		console.log('Params: '+$routeParams.product);
+		//console.log('Params: '+$routeParams.product);
 		var myThis = this;
 
-		$http.get('http://api.shirtfull.com/categories/'+$routeParams.product).
+		$http.get('http://tshirt.local/products/'+$routeParams.product).
 			success(function(data, status, headers, config) {
 				console.log(data);
-				var log = [];
-				angular.forEach(data.products, function(value, key, obj) {
-				  this.push({id: value.id, name:value.name});
-				}, log);
-				console.log(log);
-				myThis.productsTest = log;
+				angular.forEach(data.colors, function(color, key) {
+					myThis.colors.push( { name : color.name, id : color.name, value: '#'+color.hex } );
+				});
+				myThis.selectedDescription = data.description;
+				console.log(myThis.colors);
 			}).
 			error(function(data, status, headers, config) {
 			 	console.log(data);
@@ -130,7 +131,7 @@ function pathalize(name) {
 			{name: 'Hoodie', id: 2, price: 19, sizes: ['SM','MED', 'XL','XXL'], img_path: ['hoodie_front.png', 'hoodie_back.png']},
 			{name: 'Tank Top', id: 3, price: 14, sizes: ['XS','SM', 'MED'], img_path: ['tank_front.png', 'tank_back.png']}
 		];
-	
+		/*
 		this.colors = [	
 			{name: 'Salmon', id: 0, value: '#ffbe9f'},
 			{name: 'Night Black', id: 1, value: '#333333'},
@@ -144,7 +145,7 @@ function pathalize(name) {
 			{name: 'Dark Blue', id: 9, value: '#0e3d83'},
 			{name: 'Kaki', id: 10, value: '#779416'},
 			{name: 'Yellow', id: 11, value: '#faee05'}
-		];
+		];*/
 		
 		this.frontPrice = 5;
 		this.backPrice = 5;
@@ -170,6 +171,7 @@ function pathalize(name) {
 		};
 
 		this.update = function() {
+			
 			this.curSelected = queryProd(this.types, this.curSelectedId);
 			if ($("#versoBtn").hasClass('active') == false) {
 				$("#preloadFront").one('load', function() {
