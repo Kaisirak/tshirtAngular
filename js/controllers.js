@@ -29,9 +29,10 @@ function rgbToHsl(rgb){
             case b: h = (r - g) / d + 4; break;
         }
         h /= 6;
+
     }
 
-    return [h, s, l];
+    return { 'h' : h , 's' : s, 'l' : l};
 }
 
 function pathalize(name) {
@@ -140,7 +141,7 @@ function pathalize(name) {
 			success(function(data, status, headers, config) {
 				console.log(data);
 				angular.forEach(data.colors, function(color, key) {
-					myThis.colors.push( { name : color.name, id : color.name, value: '#'+color.hex } );
+					myThis.colors.push( { name : color.name, id : color.name, value: '#'+color.hex, hsl : rgbToHsl(color.hex), img_front : '' } );
 				});
 				myThis.selectedDescription = data.description;
 				console.log(myThis.colors);
