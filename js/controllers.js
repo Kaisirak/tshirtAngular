@@ -11,9 +11,9 @@ function queryProd(myArray, myId)
 }
 
 function rgbToHsl(rgb){
-		var r = parseFloat(rgb.slice(0,2));
-		var g = parseFloat(rgb.slice(2,4));
-		var b = parseFloat(rgb.slice(4,6));
+		var r = parseInt(rgb.slice(0,2), 16);
+		var g = parseInt(rgb.slice(2,4), 16);
+		var b = parseInt(rgb.slice(4,6), 16);
     r /= 255, g /= 255, b /= 255;
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, l = (max + min) / 2;
