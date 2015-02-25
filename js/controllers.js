@@ -133,6 +133,7 @@ function pathalize(name) {
 		console.log('Designer <>');
 		this.selectedDescription = "";
 		this.colors = [];
+		this.images = [];
 		//var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
 		//console.log('Params: '+$routeParams.product);
 		var myThis = this;
@@ -141,10 +142,14 @@ function pathalize(name) {
 			success(function(data, status, headers, config) {
 				console.log(data);
 				angular.forEach(data.colors, function(color, key) {
-					myThis.colors.push( { name : color.name, id : color.name, value: '#'+color.hex, hsl : rgbToHsl(color.hex), img_front : '' } );
+					myThis.colors.push( { name : color.name, id : color.name, value: '#'+color.hex, hsl : rgbToHsl(color.hex) } );
+					myThis.images[color.hex] = [];
+					angular.forEach(color.images, function(image, key) {
+						myThis.images[color.hex][image.label] = image.url;
+					});
 				});
 				myThis.selectedDescription = data.description;
-				console.log(myThis.colors);
+				console.log(myThis.images);
 			}).
 			error(function(data, status, headers, config) {
 			 	console.log(data);
