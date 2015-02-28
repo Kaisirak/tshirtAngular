@@ -54,6 +54,7 @@ function pathalize(name) {
 
 	app.controller('MainController', function($http,$scope,$location) {
 
+		this.cart = [];
 		var apiurl = '';
 
 		if ($location.host() == 'tshirta.local')
@@ -92,7 +93,7 @@ function pathalize(name) {
 		    	console.log(data);
 	  		});
 
-		this.cart = [];
+		
 		// METHODS
 		this.openCart = function(){
 			$('#cartModal').modal('show');
