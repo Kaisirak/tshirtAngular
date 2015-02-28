@@ -11,9 +11,13 @@
 				<option ng-repeat="product in mainCtrl.productList" value="{{product.productId}}">{{product.name}}</option>
 			</select>
 		</div>
+
+		
 		<ul class="color-container">
-			<li ng-repeat="color in designerCtrl.colors | orderBy:'hsl.l'" ng-click="designerCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
+			<li ng-repeat="color in designerCtrl.colors | orderBy:'hsl.l'" ng-click="designerCtrl.setImage(color.id, 'front')" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
 		</ul>
+
+
 		<div class="form-group">
 			<label>Size</label>
 			<select class="form-control" ng-model="designerCtrl.curSelectedSize" ng-options="size for size in designerCtrl.curSelected.sizes"></select>

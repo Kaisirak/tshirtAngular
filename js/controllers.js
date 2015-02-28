@@ -144,10 +144,10 @@ function pathalize(name) {
 			success(function(data, status, headers, config) {
 				console.log(data);
 				angular.forEach(data.colors, function(color, key) {
-					myThis.colors.push( { name : color.name, id : color.name, value: '#'+color.hex, hsl : rgbToHsl(color.hex) } );
+					myThis.colors.push( { name : color.name, id : color.hex, value: '#'+color.hex, hsl : rgbToHsl(color.hex) } );
 					myThis.images[color.hex] = [];
 					angular.forEach(color.images, function(image, key) {
-						myThis.images[color.hex][image.label] = image.url;
+						myThis.images[color.hex][angular.lowercase(image.label)] = image.url;
 					});
 				});
 				myThis.selectedDescription = data.description;
@@ -186,6 +186,9 @@ function pathalize(name) {
 		this.curSelected = this.types[0];
 		this.curSelectedSize = this.curSelected.sizes[0];
 		this.selectedColor = 2;
+		
+		this.designerImgUrl = "";
+
 		this.setColor = function(col) {
 			this.selectedColor = col;
 		};
@@ -202,8 +205,16 @@ function pathalize(name) {
 			return (this.curSelectedSize + " " + this.colors[this.selectedColor].name + " " + this.curSelected.name);
 		};
 
+		this.setImage = function(hex, position) {
+			this.designerImgUrl = this.images[hex][position];
+			console.log(this.designerImgUrl);
+			$(".behind-product").css("background-image", "url('" + this.designerImgUrl + "')");
+		};
+
+
 		this.update = function() {
 
+			/*
 			this.curSelected = queryProd(this.types, this.curSelectedId);
 			if ($("#versoBtn").hasClass('active') == false) {
 				$("#preloadFront").one('load', function() {
@@ -228,7 +239,7 @@ function pathalize(name) {
 				});
 			}
 			//$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[($("#versoBtn").hasClass('active') == true?1:0)] + "')");
-			this.curSelectedSize = this.curSelected.sizes[0];
+			this.curSelectedSize = this.curSelected.sizes[0];*/
 		};
 	}])
 
@@ -691,9 +702,9 @@ function pathalize(name) {
 																	}
 																	$(".btn-tooltip").tooltip({container: 'body'});
 
-																	$("#onlinedesigner").on('click', '.color-preview', function() {
+																	/*$("#onlinedesigner").on('click', '.color-preview', function() {
 																		$(".behind-product").css('background-color', $(this).css('background-color'));
-																	});
+																	});*/
 				}
 			});
 	});
