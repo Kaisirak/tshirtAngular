@@ -45,7 +45,9 @@ function pathalize(name) {
 	app.config(["$routeProvider" , "$locationProvider", function($routeProvider, $locationProvider){
 		$routeProvider.when("/", {redirectTo: "/home"})
 		.when("/home", {templateUrl: "views/home.html"})
-		.when("/designer/:category/:product", {templateUrl: "views/detail.html"});
+		.when("/designer/:category/:product", {templateUrl: "views/detail.html"})
+		.when("/artworks", {templateUrl: "views/artworks.html"})
+		.when("/catalog", {templateUrl: "views/catalog.html"});
 
 		$locationProvider.html5Mode(true);
 	}]);
