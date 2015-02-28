@@ -52,7 +52,19 @@ function pathalize(name) {
 
 
 
-	app.controller('MainController', function($http,$scope) {
+	app.controller('MainController', function($http,$scope,$location) {
+
+		var apiurl = '';
+
+		if ($location.host() == 'tshirta.local')
+			apiurl = 'http://tshirt.local';
+		else
+		    apiurl = 'http://api.shirtnexus.com';
+
+		$scope.main = {
+		    brand: "ShirtNexus",
+			api_url: apiurl
+		};
 
 		this.productCompleteList = [];
 		this.productList = [];
@@ -62,7 +74,7 @@ function pathalize(name) {
 		myThis = this;
 
 		//$http.get('http://api.shirtfull.com/products').
-		$http.get('http://tshirt.local/products').
+		$http.get($scope.main.api_url+'/products').
 		  	success(function(data, status, headers, config) {
 		  		var products = angular.fromJson(data);
 		    	angular.forEach(products, function(product, key) {
@@ -79,25 +91,6 @@ function pathalize(name) {
 		  	error(function(data, status, headers, config) {
 		    	console.log(data);
 	  		});
-
-
-		/*
-		this.productList = [{name: 'T-Shirts', path: 'tshirt'},
-												{name: 'Long Sleeves', path: 'longsleeve'},
-												{name: 'Stickers', path: 'sticker'},
-												{name: 'Mugs', path: 'mug'},
-												{name: 'Sweat Shirts', path: 'sweatshirt'},
-												{name: 'Hoodies', path: 'hoodie'}]
-
-		this.productCompleteList = [{name: 'T-Shirts', path: 'tshirt'},
-										{name: 'Long Sleeves', path: 'longsleeve'},
-										{name: 'Stickers', path: 'sticker'},
-										{name: 'Mugs', path: 'mug'},
-										{name: 'Sweat Shirts', path: 'sweatshirt'},
-										{name: 'Hoodies', path: 'hoodie'},
-										{name: 'Pens', path: 'pen'},
-										{name: 'Underwears', path: 'underwear'}];
-		*/
 
 		this.cart = [];
 		// METHODS
@@ -140,7 +133,7 @@ function pathalize(name) {
 		//console.log('Params: '+$routeParams.product);
 		var myThis = this;
 
-		$http.get('http://tshirt.local/products/'+$routeParams.product).
+		$http.get($scope.main.api_url+'/products/'+$routeParams.product).
 			success(function(data, status, headers, config) {
 				console.log(data);
 				angular.forEach(data.colors, function(color, key) {
@@ -347,8 +340,10 @@ function pathalize(name) {
 										imgObj.onload = function () {
 											var image = new fabric.Image(imgObj);
 											image.set({
-												left: canvas.width / 2,
-												top: canvas.height / 2,
+												left: canvas.width / 100,
+												top: canvas.height / 20,
+												scaleY: canvas.width / image.width,
+    											scaleX: canvas.width / image.width,
 												angle: 0,
 												padding: 0,
 												cornersize: 0
