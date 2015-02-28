@@ -5,22 +5,25 @@
 </ul>
 <div ng-show="tabCtrl.isSet(1)" class="angular-smooth-anim">
 	<div class="well well-lg">
-		<div class="form-group">
+		<!--
 			<label>Model</label>
-			<select class="form-control" ng-model="designerCtrl.curSelectedId" ng-change="designerCtrl.update()">
+			<select class="form-control" ng-model="designerCtrl.selectedProduct" ng-change="designerCtrl.update()">
 				<option ng-repeat="product in mainCtrl.productList" value="{{product.productId}}">{{product.name}}</option>
 			</select>
-		</div>
+		</div>-->
 
-		
+		<div class="form-group">
+		<label>Pick a color</label>
 		<ul class="color-container">
-			<li ng-repeat="color in designerCtrl.colors | orderBy:'hsl.l'" ng-click="designerCtrl.setImage(color.id, 'front')" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
+			<li ng-repeat="color in designerCtrl.colors | orderBy:'hsl.l'" ng-click="designerCtrl.setColor(color.id)" class="color-preview" title="{{color.name}}" style="background-color:{{color.value}};"></li>
 		</ul>
-
+		</div>
 
 		<div class="form-group">
 			<label>Size</label>
-			<select class="form-control" ng-model="designerCtrl.curSelectedSize" ng-options="size for size in designerCtrl.curSelected.sizes"></select>
+			<select class="form-control" ng-model="designerCtrl.curSelectedSize">
+				<option ng-repeat="value in designerCtrl.possibleSizes" value="value">{{value}}</option>
+			</select>
 		</div>
 		<div class="checkbox">
 			<label><input id="btnBack" type="checkbox" name="back" value="back" ng-model="designerCtrl.isBackDesign" ng-click="designerCtrl.showFront()"> <b>Design Back</b></label>
