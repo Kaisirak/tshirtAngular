@@ -46,7 +46,7 @@
 <body ng-app="main-app" ng-controller="MainController as mainCtrl">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-default" style="margin-bottom:0px;" role="navigation">
+    <nav class="navbar navbar-default" style="margin-bottom:0px;" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -66,7 +66,7 @@
                     <li><a href="/designer/tshirt/american-apparel-50-50-t-shirt">Custom Shirt</a></li>
                     <li><a href="/designer/tshirt/american-apparel-50-50-t-shirt">Browse Catalog</a></li>
                 </ul>
-                <button type="button" ng-click="mainCtrl.openCart()" class="show-cart hidden-xs"><i class="fa fa-shopping-cart"></i> My Cart ({{mainCtrl.cart.length}})</button>
+                <button type="button" ng-click="mainCtrl.openCart()" class="btn-info show-cart hidden-xs"><i class="fa fa-shopping-cart"></i> My Cart ({{mainCtrl.cart.length}})</button>
             </div>
             <!-- /.navbar-collapse -->
         </div>
