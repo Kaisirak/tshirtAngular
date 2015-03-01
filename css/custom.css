@@ -168,7 +168,7 @@ a {
 	margin-right: 10px;
 }
 
-canvas.lower-canvas{
+.canvas-container:hover .lower-canvas{
   border: 2px solid #FFF;
 }
 
