@@ -168,6 +168,10 @@ a {
 	margin-right: 10px;
 }
 
+.lower-canvas:hover{
+  border: 2px solid #FFF;
+}
+
 .over-title{
 	display: block;
 	position:relative;
