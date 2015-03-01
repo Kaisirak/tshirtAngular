@@ -46,6 +46,7 @@ function pathalize(name) {
 		$routeProvider.when("/", {redirectTo: "/home"})
 		.when("/home", {templateUrl: "views/home.html"})
 		.when("/designer/:category/:product", {templateUrl: "views/detail.html"})
+		.when("/product/:slug", {templateUrl: "views/product.html"})
 		.when("/artworks", {templateUrl: "views/artworks.html"})
 		.when("/catalog", {templateUrl: "views/catalog.html"});
 
