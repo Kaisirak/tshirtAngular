@@ -55,7 +55,7 @@ function pathalize(name) {
 		.when("/coupons", {templateUrl: "views/coupons.html"})
 		.when("/contact-us", {templateUrl: "views/contact-us.html"})
 		.when("/help-and-faq", {templateUrl: "views/help-and-faq.html"})
-		.when("/privacy-security", {templateUrl: "views/privacy-security.html"})
+		.when("/privacy-and-security", {templateUrl: "views/privacy-and-security.html"})
 		.when("/terms-and-conditions", {templateUrl: "views/terms-and-conditions.html"});
 
 		$locationProvider.html5Mode(true);
