@@ -148,7 +148,7 @@ function pathalize(name) {
 						myThis.images[color.hex][angular.lowercase(image.label)] = image.url;
 					});
 					if (!myThis.selectedColor)
-						myThis.setColor(color.hex);
+						//myThis.setColor(color.hex);
 					if (!myThis.possibleSizes.length)
 						myThis.possibleSizes = color.sizes;
 				});
@@ -179,8 +179,8 @@ function pathalize(name) {
 		this.designerImgUrl = "";
 
 		this.setColor = function(hex) {
-			this.selectedColor = hex;
-			this.setImage(hex, 'front');
+			this.selectedColor = '#'+hex;
+			//this.setImage(hex, 'front');
 			this.setSizes(hex, 'front');
 		};
 
@@ -697,9 +697,9 @@ function pathalize(name) {
 																	}
 																	$(".btn-tooltip").tooltip({container: 'body'});
 
-																	/*$("#onlinedesigner").on('click', '.color-preview', function() {
+																	$("#onlinedesigner").on('click', '.color-preview', function() {
 																		$(".behind-product").css('background-color', $(this).css('background-color'));
-																	});*/
+																	});
 				}
 			});
 	});
