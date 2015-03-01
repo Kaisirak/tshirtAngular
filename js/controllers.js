@@ -48,7 +48,15 @@ function pathalize(name) {
 		.when("/designer/:category/:product", {templateUrl: "views/detail.html"})
 		.when("/product/:slug", {templateUrl: "views/product.html"})
 		.when("/artworks", {templateUrl: "views/artworks.html"})
-		.when("/catalog", {templateUrl: "views/catalog.html"});
+		.when("/catalog", {templateUrl: "views/catalog.html"})
+		.when("/order-status", {templateUrl: "views/order-status.html"})
+		.when("/delivery-times", {templateUrl: "views/delivery-times.html"})
+		.when("/shipping-information", {templateUrl: "views/shipping-information.html"})
+		.when("/coupons", {templateUrl: "views/coupons.html"})
+		.when("/contact-us", {templateUrl: "views/contact-us.html"})
+		.when("/help-and-faq", {templateUrl: "views/help-and-faq.html"})
+		.when("/privacy-security", {templateUrl: "views/privacy-security.html"})
+		.when("/terms-and-conditions", {templateUrl: "views/terms-and-conditions.html"});
 
 		$locationProvider.html5Mode(true);
 	}]);
