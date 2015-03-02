@@ -245,3 +245,118 @@ a {
 	background:#3276b1;
 	border-color:#3276b1;
 }
+
+
+
+
+
+
+
+
+
+
+.footer-container {
+  border-top-color: rgb(119, 119, 119);
+  border-top-style: none;
+  border-top-width: 0px;
+  bottom: 0px;
+  box-sizing: border-box;
+  color: rgb(119, 119, 119);
+  display: block;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  height: 50px;
+  line-height: 13px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  outline-color: rgb(119, 119, 119);
+  outline-style: none;
+  outline-width: 0px;
+  position: fixed;
+  text-align: center;
+  width: 1334px;
+  z-index: 5;
+}
+.footer {
+box-sizing: border-box;
+color: rgb(119, 119, 119);
+display: block;
+font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+font-size: 13px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 50px;
+line-height: 13px;
+outline-color: rgb(119, 119, 119);
+outline-style: none;
+outline-width: 0px;
+text-align: center;
+width: 1334px;
+}
+.footer-bottom {
+  background-color: rgba(255, 255, 255, 0.85098);
+box-sizing: border-box;
+color: rgb(119, 119, 119);
+display: block;
+font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+font-size: 13px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 50px;
+line-height: 40px;
+min-height: 50px;
+outline-color: rgb(119, 119, 119);
+outline-style: none;
+outline-width: 0px;
+padding-bottom: 5px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 5px;
+text-align: center;
+width: 1334px;
+}
+.social-icons {
+  box-sizing: border-box;
+color: rgb(119, 119, 119);
+display: block;
+float: left;
+font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+font-size: 13px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 40px;
+line-height: 40px;
+outline-color: rgb(119, 119, 119);
+outline-style: none;
+outline-width: 0px;
+text-align: center;
+width: 210px;
+}
+
+.custom-block {
+  box-sizing: border-box;
+color: rgb(119, 119, 119);
+display: block;
+float: left;
+font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+font-size: 13px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+height: 40px;
+line-height: 40px;
+margin-left: 20px;
+outline-color: rgb(119, 119, 119);
+outline-style: none;
+outline-width: 0px;
+text-align: center;
+width: 359px;
+}
