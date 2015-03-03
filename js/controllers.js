@@ -104,7 +104,7 @@ function pathalize(name) {
 		    	console.log(data);
 	  		});
 
-		
+
 		// METHODS
 		this.openCart = function(){
 			$('#cartModal').modal('show');
@@ -183,7 +183,7 @@ function pathalize(name) {
 		this.curSelected = this.types[0];
 		this.curSelectedSize = this.curSelected.sizes[0];
 		this.selectedColor = 2;*/
-		
+
 		this.designerImgUrl = "";
 
 		this.setColor = function(hex) {
@@ -242,8 +242,15 @@ function pathalize(name) {
 			//$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[($("#versoBtn").hasClass('active') == true?1:0)] + "')");
 			this.curSelectedSize = this.curSelected.sizes[0];*/
 		};
-	}])
+	}]);
 
+app.controller('ProductController', ["$http", "$routeParams", "$scope", function($http,$routeParams,$scope) {
+	$scope.currentProd = {name: "lel1", subtitle: 'hahahahah', description: "<p>Proceed then with the classic triplet: the pain, the dream, the solution.</p>
+	<p><strong>The pain</strong> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br /><strong>The dream</strong> enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.</p>
+	<p><strong>The solution</strong> selfies semiotics keffiyeh master cleanse Vice before they sold out. Vegan 90's tofu pork belly skateboard, Truffaut tote bag.</p>",
+	price: 'l2l', reviews: [{desc: 'lelel le lelelele e', author: 'Henri Golo'}, {desc: 'iotetue tue ioterutueor', author: 'Henri Hehe'}], images: [{path: 'img/tests/demo-shirt.png', text: 'amazing alt image'}, {path: 'img/tests/demo-shirt.png', text: 'amazing second alt image'}]}
+
+}]);
 
 
 	app.controller('TabController', function() {
