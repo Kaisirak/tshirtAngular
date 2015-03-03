@@ -247,9 +247,7 @@ function pathalize(name) {
 	app.controller('ProductController', ["$http", "$routeParams", "$scope", function($http,$routeParams,$scope) {
 		$scope.currentProd = {name: "lel1",
 													subtitle: 'hahahahah',
-													description: "<p>Proceed then with the classic triplet: the pain, the dream, the solution.</p>
-													<p><strong>The pain</strong> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br /><strong>The dream</strong> enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur.</p>
-													<p><strong>The solution</strong> selfies semiotics keffiyeh master cleanse Vice before they sold out. Vegan 90's tofu pork belly skateboard, Truffaut tote bag.</p>",
+													description: 'leleldel dle dleldels',
 													price: 'l2l',
 													reviews: [{desc: 'lelel le lelelele e', author: 'Henri Golo'}, {desc: 'iotetue tue ioterutueor', author: 'Henri Hehe'}],
 													images: [{path: 'img/tests/demo-shirt.png', text: 'amazing alt image'}, {path: 'img/tests/demo-shirt.png', text: 'amazing second alt image'}]
