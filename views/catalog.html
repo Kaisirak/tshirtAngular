@@ -1,3 +1,11 @@
 <div class="container">
   <h1>Catalog</h1>
+  <div class="row">
+    <div class="col-xs-6 col-md-3" ng-repeat="product in mainCtrl.productList">
+      <a href="/designer/{{product.category}}/{{product.path}}" class="thumbnail">
+        <img src="{{product.image}}" alt="{{product.name}}" style="height: 180px; display: block; background-size: cover;" onerror="if (this.src != 'http://placehold.it/180') this.src = 'http://placehold.it/180';">
+        <span class="over-title">{{product.name}}</span>
+      </a>
+    </div>
+  </div>
 </div>
