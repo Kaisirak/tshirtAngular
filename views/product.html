@@ -16,9 +16,13 @@
 
         <div class="col-xs-12 col-md-6">
           <figure class="text-center">
-            <img ng-repeat="img in currentProd.images" ng-src="{{img.path}}" alt="{{img.text}}" class="img-thumbnail" />
+            <ul rn-carousel class="image">
+              <li ng-repeat="img in currentProd.images">
+                <img ng-src="{{img.path}}" alt="{{img.text}}" class="img-thumbnail" />
+              </li>
+            </ul>
           </figure>
-          <a class="btn btn-large btn-block btn-success" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price}}</a>
+          <a class="btn btn-large btn-block btn-success" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price | currency}}</a>
         </div>
 
     </div>
