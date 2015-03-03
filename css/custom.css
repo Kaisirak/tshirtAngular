@@ -414,9 +414,9 @@ input[type=range] {
 					/* indicators */
 					div.rn-carousel-indicator span {
 						cursor: pointer;
-						color: #666; }
+						color: #ddd; }
 						div.rn-carousel-indicator span.active {
-							color: white; }
+							color: #666; }
 
 							/* prev/next controls */
 							.rn-carousel-control {
