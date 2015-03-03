@@ -361,6 +361,14 @@ text-align: center;
 width: 359px;
 }
 
+.bgimage {
+	text-align:right;
+	color:white;
+	background-size:cover;
+	height: 100%;
+	background-position: center center;
+}
+
 input[type=range] {
 	width: 300px; }
 

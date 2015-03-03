@@ -18,7 +18,9 @@
           <figure class="text-center">
             <ul rn-carousel class="image">
               <li ng-repeat="img in currentProd.images">
-                <img ng-src="{{img.path}}" alt="{{img.text}}" class="img-thumbnail" />
+                <div ng-style="{'background-image': 'url(' + img.path + ')'}"  class="bgimage">
+                  lel
+                </div>
               </li>
             </ul>
           </figure>
