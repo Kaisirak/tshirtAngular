@@ -244,10 +244,11 @@ function pathalize(name) {
 		};
 	}]);
 
-	app.controller('ProductController', ["$http", "$routeParams", "$scope", function($http,$routeParams,$scope) {
+	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce"
+	function($http, $routeParams, $scope, $sce) {
 		$scope.currentProd = {name: "lel1",
 													subtitle: 'hahahahah',
-													description: '<p><strong>leleldel</strong> dle dleldels</p>',
+													description: $sce.trustAsHtml('<p><strong>leleldel</strong> dle dleldels</p>'),
 													price: 'l2l',
 													reviews: [{desc: 'lelel le lelelele e', author: 'Henri Golo'}, {desc: 'iotetue tue ioterutueor', author: 'Henri Hehe'}],
 													images: [{path: 'img/tests/demo-shirt.png', text: 'amazing alt image'}, {path: 'img/tests/demo-shirt.png', text: 'amazing second alt image'}]
