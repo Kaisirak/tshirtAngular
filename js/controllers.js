@@ -244,7 +244,7 @@ function pathalize(name) {
 		};
 	}]);
 
-	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce"
+	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce",
 	function($http, $routeParams, $scope, $sce) {
 		$scope.currentProd = {name: "lel1",
 													subtitle: 'hahahahah',
