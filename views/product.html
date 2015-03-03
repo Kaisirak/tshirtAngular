@@ -11,14 +11,14 @@
   <hr>
     <div class="row">
       <div class="col-xs-12 col-md-4 col-md-offset-1">
-        {{currentProd.description}}
+        <span ng-bind-html="currentProd.description"></span>
       </div>
 
         <div class="col-xs-12 col-md-6">
           <figure class="text-center">
             <img ng-repeat="img in currentProd.images" ng-src="{{img.path}}" alt="{{img.text}}" class="img-thumbnail" />
           </figure>
-          <a class="btn btn-large btn-block btn-success" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO SHOPPING CART</a>
+          <a class="btn btn-large btn-block btn-success" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price}}</a>
         </div>
 
     </div>
