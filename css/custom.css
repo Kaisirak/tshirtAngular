@@ -269,6 +269,7 @@ a {
 
 .grid-items-content{
 	color: white;
+	text-shadow: 0px 0px 6px #333;
 	position: relative;
 	top: 80%;
 	left: 40%;
@@ -276,7 +277,7 @@ a {
 	font-weight: bold;
 }
 
-
+/* CUSTOM GRID VIEW  END */
 
 
 .footer-container {

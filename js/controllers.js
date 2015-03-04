@@ -71,7 +71,7 @@ function pathalize(name) {
 				ngGridItemsHeight: '=?',
 				ngGridItemsFilter: '=?'
 			},
-			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" ng-click="unselectItem($index)" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
+			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
 			controller: ['$scope', function($scope){
 
 				$scope.divWidth = 600;
