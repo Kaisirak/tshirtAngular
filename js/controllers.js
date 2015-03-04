@@ -62,6 +62,103 @@ function pathalize(name) {
 	}]);
 
 
+	app.directive('ngGridItems', function($window) {
+		return {
+			restrict: 'A',
+			scope: {
+				ngGridItemsList: '=',
+				ngGridItemsWidth: '=?',
+				ngGridItemsHeight: '=?',
+				ngGridItemsFilter: '=?'
+			},
+			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" ng-click="unselectItem($index)" style="height: {{itemHeight}}; width: {{itemWidth}}; background-color: {{item.color}}; transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
+			controller: ['$scope', function($scope){
+
+				$scope.divWidth = 600;
+				$scope.divHeight = 400;
+				$scope.divX = 0;
+				$scope.divY = 0;
+				$scope.itemWidth = 200;
+				$scope.itemHeight = 200;
+				$scope.itemRightMargin = 5;
+				$scope.itemBottomMargin = 5;
+
+				$scope.showAll = function()
+			{
+				for(var i = 0; i < $scope.displayList.length; i++)
+					$scope.displayList[i].active = true;
+				};
+
+				if (angular.isDefined($scope.ngGridItemsWidth))
+					$scope.itemWidth = $scope.ngGridItemsWidth;
+
+					if (angular.isDefined($scope.ngGridItemsHeight))
+						$scope.itemHeight = $scope.ngGridItemsHeight;
+
+						$scope.displayList = angular.copy($scope.ngGridItemsList);
+
+						$scope.$watch(function(scope){
+							return scope.ngGridItemsFilter;
+						},
+						function(newVal){
+							if (angular.isDefined($scope.ngGridItemsFilter))
+							{
+								for(var i = 0; i < $scope.displayList.length; i++)
+								{
+									if ($scope.displayList[i].txt.indexOf($scope.ngGridItemsFilter) > -1)
+										$scope.displayList[i].active = true;
+										else
+											$scope.displayList[i].active = false;
+										}
+									}
+									else
+									{
+										$scope.showAll();
+									}
+									$scope.setSize();
+								}
+							);
+
+							$scope.unselectItem = function(index){
+								$scope.displayList[index].active = false;
+								$scope.setSize();
+							};
+
+							$scope.updateView = function()
+						{
+							for (var i = iAct = 0; i < $scope.displayList.length; i++)
+							{
+								var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
+								var posY = Math.floor((iAct * $scope.itemWidth) / $scope.divWidth);
+
+								$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
+								$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
+
+								if ($scope.displayList[i].active)
+									iAct++;
+
+									$scope.divHeight = $scope.displayList[i].positionY + $scope.itemHeight + $scope.itemBottomMargin + $scope.itemBottomMargin - $scope.divY;
+								}
+							};
+							$scope.showAll();
+
+						}],
+						link: function(scope, iElement, iAttrs, ctrl) {
+							scope.setSize = function(){
+								scope.divX = iElement[0].offsetLeft;
+								scope.divY = iElement[0].offsetTop;
+								scope.divWidth = Math.floor(iElement[0].offsetWidth / scope.itemWidth) * scope.itemWidth;
+								scope.updateView();
+								iElement.css('height', scope.divHeight);
+							};
+							angular.element($window).bind('resize', function() {
+								scope.setSize();
+								scope.$apply();
+							});
+							scope.setSize();
+						}
+					}
+				});
 
 	app.controller('MainController', ['$http', '$scope', '$location', function($http,$scope,$location) {
 
@@ -80,6 +177,14 @@ function pathalize(name) {
 
 		this.productCompleteList = [];
 		this.productList = [];
+
+		$scope.artworkList = [{color: '#fefefe', txt: 'Alien'},
+													{color: '#fefefe', txt: 'Plane'},
+													{color: '#fefefe', txt: 'Dog'},
+													{color: '#fefefe', txt: 'Thing'},
+													{color: '#fefefe', txt: 'Lel'},
+													{color: '#fefefe', txt: 'Games'},
+													{color: '#fefefe', txt: 'Other Things'}]
 
 		var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
 
