@@ -141,7 +141,7 @@ function pathalize(name) {
 								}
 							};
 							$scope.showAll();
-							$timeout(function(){$scope.$apply();}, 200, true);
+							$timeout(function(){$scope.$apply();console.log("wtf")}, 200, true);
 
 						}],
 						link: function(scope, iElement, iAttrs, ctrl) {
