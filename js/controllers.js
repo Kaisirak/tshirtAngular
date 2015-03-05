@@ -141,10 +141,6 @@ function pathalize(name) {
 								}
 							};
 
-							$scope.myapply = function(){
-								$timeout(function(){$scope.$apply();console.log("wtf")}, 300, true);
-							};
-
 							$scope.showAll();
 
 						}],
@@ -158,11 +154,13 @@ function pathalize(name) {
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
-								scope.myapply();
+								if (!$scope.$$phase)
+									$scope.$apply();
 							});
 							scope.$on("$routeChangeSuccess", function (event){
 								scope.setSize();
-								scope.myapply();
+								if (!$scope.$$phase)
+									$scope.$apply();
 							});
 						}
 					}
