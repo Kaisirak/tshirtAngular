@@ -99,49 +99,50 @@ function pathalize(name) {
 
 				$scope.$watch(function(scope){
 						return scope.ngGridItemsFilter;
-					},
-					function(newVal){
-						if (angular.isDefined($scope.ngGridItemsFilter))
+				},
+				function(newVal){
+					if (angular.isDefined($scope.ngGridItemsFilter))
+					{
+						for(var i = 0; i < $scope.displayList.length; i++)
 						{
-							for(var i = 0; i < $scope.displayList.length; i++)
-							{
-								if ($scope.displayList[i].txt.indexOf($scope.ngGridItemsFilter) > -1)
-									$scope.displayList[i].active = true;
-								else
-									$scope.displayList[i].active = false;
-								}
+							if ($scope.displayList[i].txt.indexOf($scope.ngGridItemsFilter) > -1)
+								$scope.displayList[i].active = true;
+							else
+								$scope.displayList[i].active = false;
 							}
-								else
-								{
-									$scope.showAll();
-								}
-								$scope.setSize();
-							}
-						);
-
-							$scope.unselectItem = function(index){
-								$scope.displayList[index].active = false;
-								$scope.setSize();
-							};
-
-							$scope.updateView = function()
+						}
+							else
 							{
-								for (var i = iAct = 0; i < $scope.displayList.length; i++)
-								{
-									var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
-									var posY = Math.floor((iAct * $scope.itemWidth) / $scope.divWidth);
+								$scope.showAll();
+							}
+							$scope.setSize();
+						}
+					);
 
-									$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
-									$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
+					$scope.unselectItem = function(index){
+						$scope.displayList[index].active = false;
+						$scope.setSize();
+					};
 
-									if ($scope.displayList[i].active)
-										iAct++;
+					$scope.updateView = function()
+					{
+						console.log($scope.divY);
+						for (var i = iAct = 0; i < $scope.displayList.length; i++)
+						{
+							var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
+							var posY = Math.floor((iAct * $scope.itemWidth) / $scope.divWidth);
 
-										$scope.divHeight = $scope.displayList[i].positionY + $scope.itemHeight + $scope.itemBottomMargin + $scope.itemBottomMargin - $scope.divY;
-								}
-							};
+							$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
+							$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
 
-							$scope.showAll();
+							if ($scope.displayList[i].active)
+								iAct++;
+
+								$scope.divHeight = $scope.displayList[i].positionY + $scope.itemHeight + $scope.itemBottomMargin + $scope.itemBottomMargin - $scope.divY;
+						}
+					};
+
+					$scope.showAll();
 
 						}],
 						link: function(scope, iElement, iAttrs, ctrl) {
