@@ -71,7 +71,7 @@ function pathalize(name) {
 				ngGridItemsHeight: '=?',
 				ngGridItemsFilter: '=?'
 			},
-			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
+			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; -webkit-transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}});opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
 			controller: ['$scope', '$timeout', function($scope, $timeout){
 
 				$scope.divWidth = 600;
@@ -126,7 +126,6 @@ function pathalize(name) {
 
 					$scope.updateView = function()
 					{
-						console.log($scope.divY);
 						for (var i = iAct = 0; i < $scope.displayList.length; i++)
 						{
 							var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
