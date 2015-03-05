@@ -125,23 +125,23 @@ function pathalize(name) {
 							};
 
 							$scope.updateView = function()
-						{
-							for (var i = iAct = 0; i < $scope.displayList.length; i++)
 							{
-								var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
-								var posY = Math.floor((iAct * $scope.itemWidth) / $scope.divWidth);
+								for (var i = iAct = 0; i < $scope.displayList.length; i++)
+								{
+									var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
+									var posY = Math.floor((iAct * $scope.itemWidth) / $scope.divWidth);
 
-								$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
-								$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
+									$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
+									$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
 
-								if ($scope.displayList[i].active)
-									iAct++;
+									if ($scope.displayList[i].active)
+										iAct++;
 
-									$scope.divHeight = $scope.displayList[i].positionY + $scope.itemHeight + $scope.itemBottomMargin + $scope.itemBottomMargin - $scope.divY;
-								}
-							};
-							$scope.showAll();
-							$timeout(function(){$scope.$apply();console.log("wtf")}, 200, true);
+										$scope.divHeight = $scope.displayList[i].positionY + $scope.itemHeight + $scope.itemBottomMargin + $scope.itemBottomMargin - $scope.divY;
+									}
+									$timeout(function(){$scope.$apply();console.log("wtf")}, 200, true);
+								};
+								$scope.showAll();
 
 						}],
 						link: function(scope, iElement, iAttrs, ctrl) {
