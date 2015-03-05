@@ -150,12 +150,15 @@ function pathalize(name) {
 								scope.divWidth = Math.floor(iElement[0].offsetWidth / scope.itemWidth) * scope.itemWidth;
 								scope.updateView();
 								iElement.css('height', scope.divHeight);
-								scope.$apply();
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
+								scope.$apply();
 							});
-							scope.setSize();
+							scope.$on("$routeChangeSuccess", function (event){
+								scope.setSize();
+								scope.$apply();
+							});
 						}
 					}
 				});
