@@ -156,6 +156,7 @@ function pathalize(name) {
 								scope.$apply();
 							});
 							scope.setSize();
+							scope.$on("$routeChangeSuccess", function (event){console.log("route changed bb")});
 						}
 					}
 				});
