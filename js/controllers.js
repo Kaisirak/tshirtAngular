@@ -84,40 +84,40 @@ function pathalize(name) {
 				$scope.itemBottomMargin = 5;
 
 				$scope.showAll = function()
-			{
-				for(var i = 0; i < $scope.displayList.length; i++)
-					$scope.displayList[i].active = true;
+				{
+					for(var i = 0; i < $scope.displayList.length; i++)
+						$scope.displayList[i].active = true;
 				};
 
 				if (angular.isDefined($scope.ngGridItemsWidth))
 					$scope.itemWidth = $scope.ngGridItemsWidth;
 
-					if (angular.isDefined($scope.ngGridItemsHeight))
-						$scope.itemHeight = $scope.ngGridItemsHeight;
+				if (angular.isDefined($scope.ngGridItemsHeight))
+					$scope.itemHeight = $scope.ngGridItemsHeight;
 
-						$scope.displayList = angular.copy($scope.ngGridItemsList);
+				$scope.displayList = angular.copy($scope.ngGridItemsList);
 
-						$scope.$watch(function(scope){
-							return scope.ngGridItemsFilter;
-						},
-						function(newVal){
-							if (angular.isDefined($scope.ngGridItemsFilter))
+				$scope.$watch(function(scope){
+						return scope.ngGridItemsFilter;
+					},
+					function(newVal){
+						if (angular.isDefined($scope.ngGridItemsFilter))
+						{
+							for(var i = 0; i < $scope.displayList.length; i++)
 							{
-								for(var i = 0; i < $scope.displayList.length; i++)
-								{
-									if ($scope.displayList[i].txt.indexOf($scope.ngGridItemsFilter) > -1)
-										$scope.displayList[i].active = true;
-										else
-											$scope.displayList[i].active = false;
-										}
-									}
-									else
-									{
-										$scope.showAll();
-									}
-									$scope.setSize();
+								if ($scope.displayList[i].txt.indexOf($scope.ngGridItemsFilter) > -1)
+									$scope.displayList[i].active = true;
+								else
+									$scope.displayList[i].active = false;
 								}
-							);
+							}
+								else
+								{
+									$scope.showAll();
+								}
+								$scope.setSize();
+							}
+						);
 
 							$scope.unselectItem = function(index){
 								$scope.displayList[index].active = false;
