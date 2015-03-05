@@ -156,9 +156,6 @@ function pathalize(name) {
 								scope.setSize();
 							});
 							scope.setSize();
-							scope.$on("$routeChangeSuccess", function (event){
-								scope.setSize();
-							});
 						}
 					}
 				});
