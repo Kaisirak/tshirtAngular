@@ -159,7 +159,7 @@ function pathalize(name) {
 							});
 							scope.$on("$routeChangeSuccess", function (event){
 								scope.setSize();
-								if (!$scope.$$phase)
+								if (!scope.$$phase)
 									$scope.$apply();
 							});
 						}
