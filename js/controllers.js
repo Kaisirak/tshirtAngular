@@ -158,6 +158,7 @@ function pathalize(name) {
 							});
 							scope.$on("$routeChangeSuccess", function (event){
 								scope.divY = 0;
+								scope.updateView();
 								console.log("route")
 								scope.setSize();
 							});
