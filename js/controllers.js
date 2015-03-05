@@ -72,7 +72,7 @@ function pathalize(name) {
 				ngGridItemsFilter: '=?'
 			},
 			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
-			controller: ['$scope', function($scope){
+			controller: ['$scope', '$timeout', function($scope, $timeout){
 
 				$scope.divWidth = 600;
 				$scope.divHeight = 400;
@@ -141,6 +141,7 @@ function pathalize(name) {
 								}
 							};
 							$scope.showAll();
+							$timeout(function(){$scope.$apply();}, 200, true);
 
 						}],
 						link: function(scope, iElement, iAttrs, ctrl) {
@@ -153,11 +154,9 @@ function pathalize(name) {
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
-								scope.$apply();
 							});
 							scope.$on("$routeChangeSuccess", function (event){
 								scope.setSize();
-								scope.$apply();
 							});
 						}
 					}
