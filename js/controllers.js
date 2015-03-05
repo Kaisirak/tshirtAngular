@@ -62,7 +62,7 @@ function pathalize(name) {
 	}]);
 
 
-	app.directive('ngGridItems', function($window) {
+	app.directive('ngGridItems', function($window, $timeout) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -147,19 +147,18 @@ function pathalize(name) {
 						}],
 						link: function(scope, iElement, iAttrs, ctrl) {
 							scope.setSize = function(){
-								scope.divX = iElement[0].offsetLeft;
-								scope.divY = iElement[0].offsetTop;
-								scope.divWidth = Math.floor(iElement[0].offsetWidth / scope.itemWidth) * scope.itemWidth;
-								scope.updateView();
-								iElement.css('height', scope.divHeight);
+								$timeout(function(){
+									scope.divX = iElement[0].offsetLeft;
+									scope.divY = iElement[0].offsetTop;
+									scope.divWidth = Math.floor(iElement[0].offsetWidth / scope.itemWidth) * scope.itemWidth;
+									scope.updateView();
+									iElement.css('height', scope.divHeight);
+								}, 1000);
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
 							});
 							scope.$on("$routeChangeSuccess", function (event){
-								scope.divY = 0;
-								scope.updateView();
-								console.log("route")
 								scope.setSize();
 							});
 						}
