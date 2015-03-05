@@ -153,7 +153,7 @@ function pathalize(name) {
 									scope.divWidth = Math.floor(iElement[0].offsetWidth / scope.itemWidth) * scope.itemWidth;
 									scope.updateView();
 									iElement.css('height', scope.divHeight);
-								}, 1000);
+								}, 100);
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
