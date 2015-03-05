@@ -154,13 +154,11 @@ function pathalize(name) {
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
-								if (!scope.$$phase)
-									scope.$apply();
+								scope.$apply();
 							});
 							scope.$on("$routeChangeSuccess", function (event){
 								scope.setSize();
-								if (!scope.$$phase)
-									scope.$apply();
+								scope.$apply();
 							});
 						}
 					}
