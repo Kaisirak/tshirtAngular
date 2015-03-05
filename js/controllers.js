@@ -138,10 +138,14 @@ function pathalize(name) {
 										iAct++;
 
 										$scope.divHeight = $scope.displayList[i].positionY + $scope.itemHeight + $scope.itemBottomMargin + $scope.itemBottomMargin - $scope.divY;
-									}
-									$timeout(function(){$scope.$apply();console.log("wtf")}, 200, true);
-								};
-								$scope.showAll();
+								}
+							};
+
+							$scope.myapply = function(){
+								$timeout(function(){$scope.$apply();console.log("wtf")}, 300, true);
+							};
+
+							$scope.showAll();
 
 						}],
 						link: function(scope, iElement, iAttrs, ctrl) {
@@ -154,9 +158,11 @@ function pathalize(name) {
 							};
 							angular.element($window).bind('resize', function() {
 								scope.setSize();
+								scope.myapply();
 							});
 							scope.$on("$routeChangeSuccess", function (event){
 								scope.setSize();
+								scope.myapply();
 							});
 						}
 					}
