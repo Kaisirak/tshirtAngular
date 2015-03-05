@@ -62,7 +62,7 @@ function pathalize(name) {
 	}]);
 
 
-	app.directive('ngGridItems', function($window) {
+	app.directive('ngGridItems', function($window, $timeout) {
 		return {
 			restrict: 'A',
 			scope: {
@@ -156,7 +156,12 @@ function pathalize(name) {
 								scope.$apply();
 							});
 							scope.setSize();
-							scope.$on("$routeChangeSuccess", function (event){scope.setSize();});
+							scope.$on("$routeChangeSuccess", function (event){
+								scope.divX = iElement[0].offsetLeft;
+								scope.divY = iElement[0].offsetTop;
+								scope.setSize();
+								$timeout(scope.setSize(), 200, true);
+							});
 						}
 					}
 				});
