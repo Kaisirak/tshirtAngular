@@ -76,8 +76,8 @@ function pathalize(name) {
 
 				$scope.divWidth = 600;
 				$scope.divHeight = 400;
-				$scope.divX = 0;
-				$scope.divY = 0;
+				$scope.divX = 200;
+				$scope.divY = 500;
 				$scope.itemWidth = 200;
 				$scope.itemHeight = 200;
 				$scope.itemRightMargin = 5;
