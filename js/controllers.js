@@ -355,18 +355,12 @@ function pathalize(name) {
 
 	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce",
 	function($http, $routeParams, $scope, $sce) {
-		$scope.currentProd = {name: "A Product Name",
-													subtitle: 'An Awesome Subtitle',
-													description: $sce.trustAsHtml('<p><strong>leleldel</strong> dle dleldels</p> <p>lelelelff gd dfkg dl gg d gd kgdjl</p> <p>ltytrdfkg dl gg dgfdgdgdjl</p>'),
-													price: 16.99,
-													reviews: [{desc: 'lelel le lelelele e', author: 'Henri Golo'}, {desc: 'iotetue tue ioterutueor', author: 'Henri Hehe'}],
-													images: [{path: 'img/tests/demo-shirt.png', text: 'amazing alt image'}, {path: 'img/tests/demo-shirt.png', text: 'amazing second alt image'}]
-												};
+		$scope.currentProd = {};
 
 		$scope.getProd = function(){
 			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams.slug).then(
 				function(response){
-					console.log(response);
+					$scope.currentProd = response.data;
 				}, function(error){
 					console.log(error);
 				}
