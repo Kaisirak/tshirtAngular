@@ -361,6 +361,7 @@ function pathalize(name) {
 			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams.slug).then(
 				function(response){
 					$scope.currentProd = response.data;
+					console.log($scope.currentProd);
 				}, function(error){
 					console.log(error);
 				}
