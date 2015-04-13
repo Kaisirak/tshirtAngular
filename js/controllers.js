@@ -364,8 +364,7 @@ function pathalize(name) {
 												};
 
 		$scope.getProd = function(){
-			console.log($routeParams);
-			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams).then(
+			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams.slug).then(
 				function(response){
 					console.log(response);
 				}, function(error){
