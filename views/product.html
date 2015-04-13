@@ -13,6 +13,9 @@
       <div class="col-xs-12 col-md-4 col-md-offset-1">
         <span ng-bind="currentProd.description"></span>
       </div>
+      <div>
+        <img ng-repeat="variant in product_variants" ng-src="variant.image">
+      </div>
 
         <div class="col-xs-12 col-md-6">
           <figure class="text-center">
