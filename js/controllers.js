@@ -361,6 +361,17 @@ function pathalize(name) {
 													price: 16.99,
 													reviews: [{desc: 'lelel le lelelele e', author: 'Henri Golo'}, {desc: 'iotetue tue ioterutueor', author: 'Henri Hehe'}],
 													images: [{path: 'img/tests/demo-shirt.png', text: 'amazing alt image'}, {path: 'img/tests/demo-shirt.png', text: 'amazing second alt image'}]
+												};
+
+		$scope.getProd = function(){
+			console.log($routeParams);
+			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams).then(
+				function(response){
+					console.log(response);
+				}, function(error){
+					console.log(error);
+				}
+			);
 		};
 
 	}]);
