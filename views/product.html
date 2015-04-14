@@ -19,8 +19,8 @@
         <ul class="color-container">
           <li ng-repeat="variant in currentProd.product_variants | unique:'color_hex'" ng-click="setSelectedVariant(currentProd.product_variants.indexOf(variant))" class="color-preview ng-scope" title="{{variant.color_name}}" style="background-color:#{{variant.color_hex}}; {{selectedVariant == currentProd.product_variants.indexOf(variant)?'border: 3px solid red;':''}}"></li>
         </ul>
-        <select ng-repeat="size in colorSize[currentProd.product_variants[selectedVariant].color_hex]">
-          <option>{{size}}</option>
+        <select>
+          <option ng-repeat="size in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{size}}">{{size}}</option>
         </select>
       </div>
 
