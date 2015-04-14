@@ -366,6 +366,7 @@ function pathalize(name) {
 	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce",
 	function($http, $routeParams, $scope, $sce) {
 		$scope.currentProd = {};
+		$scope.selectedVariant = 0;
 
 		$scope.getProd = function(){
 			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams.slug).then(
