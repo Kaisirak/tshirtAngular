@@ -1,9 +1,9 @@
-<section ng-controller="ProductController">
+<section ng-controller="ProductController" ng-init="getProd()">
   <header class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <h1>{{currentProd.name}}</h1>
-          <p class="lead">{{currentProd.subtitle}}</p>
+          <p class="lead">{{currentProd.page_subtitle}} - <a href="">#{{currentProd.categories}}</a></p>
         </div>
       </div>
   </header>
@@ -11,7 +11,10 @@
   <hr>
     <div class="row">
       <div class="col-xs-12 col-md-4 col-md-offset-1">
-        <span ng-bind-html="currentProd.description"></span>
+        <span ng-bind="currentProd.description"></span>
+      </div>
+      <div>
+        <img ng-repeat="variant in currentProd.product_variants" ng-src="variant.image">
       </div>
 
         <div class="col-xs-12 col-md-6">
@@ -24,7 +27,7 @@
             </ul>
             <div rn-carousel-indicators ng-if="currentProd.images.length > 1" slides="currentProd.images" rn-carousel-index="indexCarousel"></div>
           </figure>
-          <a class="btn btn-large btn-block btn-success" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price | currency}}</a>
+          <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price | currency}}</a>
         </div>
 
     </div>
