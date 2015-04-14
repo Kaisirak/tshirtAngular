@@ -16,7 +16,7 @@
 
       <div class="col-xs-12 col-md-6">
         <img ng-src="http://cdn.shirtnexus.com/design_thumbnails/{{currentProd.product_variants[selectedVariant].image}}">
-        <pre>{{currentProd.product_variants | unique:'hex_name' | json}}</pre>
+        <pre>{{currentProd.product_variants | unique:'color_hex' | json}}</pre>
         <ul class="color-container">
           <!--li ng-click="setSelectedVariant($index)" class="color-preview ng-scope" title="{{variant.color_name}}" style="background-color:#{{variant.color_hex}};"></li-->
         </ul>
