@@ -241,22 +241,15 @@ function pathalize(name) {
 		};
 	}]);
 
-	app.filter('unique', function() {
-   return function(collection, keyname) {
-      var output = [],
-          keys = [];
-
-      angular.forEach(collection, function(item) {
-          var key = item[keyname];
-          if(keys.indexOf(key) === -1) {
-              keys.push(key);
-              output.push(item);
-          }
-      });
-
-      return output;
+	app.filter('uniqueColor', function() {
+   var prevVal = null;
+   return function(input) {
+     if (prevVal !== input) {
+       prevVal = input;
+       return prevVal;
+     }
    };
-	});
+});
 
 	app.controller('DesignerController', ["$http", "$routeParams", "$scope", function($http,$routeParams,$scope) {
 
