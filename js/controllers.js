@@ -404,11 +404,11 @@ function pathalize(name) {
 						var i = 0;
 						angular.forEach(data, function(product, key) {
 							if (i < 4)
-								$scope.top12_part1.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+								$scope.top12_part1.push( { 'image'  : product.thumbnail, 'url' : '/product/'+product.product.id });
 							if (i >= 4 && i < 8)
-								$scope.top12_part2.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+								$scope.top12_part2.push( { 'image'  : product.thumbnail, 'url' : '/product/'+product.product.id });
 							if (i >= 8)
-								$scope.top12_part3.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+								$scope.top12_part3.push( { 'image'  : product.thumbnail, 'url' : '/product/'+product.product.id });
 							i++;
 						});
 
