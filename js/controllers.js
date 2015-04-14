@@ -433,7 +433,7 @@ function pathalize(name) {
 
 		$scope.setSelectedVariant = function(index){
 			$scope.selectedVariant = index;
-			console.log($scope.currentProd.product_variants[selectedVariant].color_hex);
+			console.log($scope.currentProd.product_variants[$scope.selectedVariant].color_hex);
 		};
 
 		$scope.getProd = function(){
