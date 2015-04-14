@@ -169,8 +169,9 @@ function pathalize(name) {
 		this.cart = [];
 		var apiurl = '';
 
-		if ($location.host() == 'tshirta.local')
-			apiurl = 'http://tshirt.local';
+		if ($location.host() == 'store.local') {
+			apiurl = 'http://api.garment.local';
+		}
 		else
 		    apiurl = 'http://api.shirtnexus.com';
 
@@ -179,7 +180,7 @@ function pathalize(name) {
 			api_url: apiurl
 		};
 
-		this.productCompleteList = [];
+		
 		this.productList = [];
 
 		$scope.artworkList = [{color: '#fefefe', txt: 'Alien'},
@@ -191,7 +192,7 @@ function pathalize(name) {
 													{color: '#fefefe', txt: 'Other Things'}]
 
 		var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
-
+		this.productCompleteList = [];
 		myThis = this;
 
 		//$http.get('http://api.shirtfull.com/products').
@@ -202,8 +203,8 @@ function pathalize(name) {
 		    		angular.forEach(product, function(value, key2) {
 		    			if (typeof value['image'] !== 'undefined' && typeof value['image'].url !== 'undefined')
 		    				console.log('Url undefined');
-		    			myThis.productCompleteList.push( { category: key, name: value['name'], path : value['productId'],
-				  			'image' : (typeof value['image'] !== 'undefined')? value['image']:'http://placehold.it/180' } );
+		    			//myThis.productCompleteList.push( { category: key, name: value['name'], path : value['productId'],
+				  			//'image' : (typeof value['image'] !== 'undefined')? value['image']:'http://placehold.it/180' } );
 		    		});
 
 				});
@@ -351,6 +352,39 @@ function pathalize(name) {
 			//$(".behind-product").css("background-image", "url('img/" + this.curSelected.img_path[($("#versoBtn").hasClass('active') == true?1:0)] + "')");
 			this.curSelectedSize = this.curSelected.sizes[0];*/
 		};
+	}]);
+	
+	app.controller('SliderController', ["$http", "$scope",
+		function($http, $scope) {
+			$scope.top12_part1 = [];
+			$scope.top12_part2 = [];
+			$scope.top12_part3 = [];
+
+			$http.get($scope.main.api_url+'/admin/top_12_products').then(
+				function(response){
+					if (typeof response.data !== undefined) {
+						var data = response.data;
+						var i = 0;
+						angular.forEach(data, function(product, key) {
+							if (i < 4)
+								$scope.top12_part1.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+							if (i >= 4 && i < 8)
+								$scope.top12_part2.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+							if (i >= 8)
+								$scope.top12_part3.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+							i++;
+						});
+
+
+						console.log($scope.top12_part1);
+						console.log($scope.top12_part2);
+						console.log($scope.top12_part3);
+					}
+				}, function(error){
+					console.log(error);
+				}
+			);
+
 	}]);
 
 	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce",
