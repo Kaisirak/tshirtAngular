@@ -428,6 +428,7 @@ function pathalize(name) {
 	app.controller('ProductController', ["$http", "$routeParams", "$scope", "$sce",
 	function($http, $routeParams, $scope, $sce) {
 		$scope.currentProd = {};
+		$scope.colorSize = {};
 		$scope.selectedVariant = 0;
 
 		$scope.setSelectedVariant = function(index){
@@ -439,6 +440,11 @@ function pathalize(name) {
 				function(response){
 					$scope.currentProd = response.data;
 					console.log($scope.currentProd);
+					for (var i = 0; i < $scope.currentProd.product_variants.length; i++)
+					{
+						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex].push($scope.currentProd.product_variants[i].size);
+					}
+					console.log($scope.colorSize);
 				}, function(error){
 					console.log(error);
 				}
