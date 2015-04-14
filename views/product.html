@@ -13,22 +13,26 @@
       <div class="col-xs-12 col-md-4 col-md-offset-1">
         <span ng-bind="currentProd.description"></span>
       </div>
-      <div>
-        <img ng-repeat="variant in currentProd.product_variants" ng-src="variant.image">
+
+      <div class="col-xs-12 col-md-6">
+        <img ng-src="http://cdn.shirtnexus.com/design_thumbnails/{{currentProd.product_variants[selectedVariant].image}}">
+        <ul class="color-container">
+          <li ng-repeat="variant in currentProd.product_variants | unique:'color_hex'" ng-click="setSelectedVariant($index)" class="color-preview ng-scope" title="{{variant.color_name}}" style="background-color:#{{variant.color_hex}};"></li>
+        </ul>
       </div>
 
-        <div class="col-xs-12 col-md-6">
-          <figure class="text-center">
-            <ul rn-carousel rn-carousel-index="indexCarousel" class="image-carousel">
-              <li ng-repeat="img in currentProd.images">
-                <div ng-style="{'background-image': 'url(' + img.path + ')'}"  class="bgimage">
-                </div>
-              </li>
-            </ul>
-            <div rn-carousel-indicators ng-if="currentProd.images.length > 1" slides="currentProd.images" rn-carousel-index="indexCarousel"></div>
-          </figure>
-          <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price | currency}}</a>
-        </div>
+      <!--div class="col-xs-12 col-md-6">
+        <figure class="text-center">
+          <ul rn-carousel rn-carousel-index="indexCarousel" class="image-carousel">
+            <li ng-repeat="variant in currentProd.product_variants | uniqueColor">
+              <div ng-style="{'background-image': 'url(http://cdn.shirtnexus.com/design_thumbnails/{{variant.image}})'}"  class="bgimage">
+              </div>
+            </li>
+          </ul>
+          <div rn-carousel-indicators ng-if="currentProd.product_variants.length > 1" slides="currentProd.product_variants" rn-carousel-index="indexCarousel"></div>
+        </figure>
+        <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.price | currency}}</a>
+      </div-->
 
     </div>
 
