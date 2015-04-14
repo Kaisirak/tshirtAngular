@@ -17,59 +17,20 @@
 </div>
 <hr>
 
-<div class="row">
+<div class="row" ng-controller="SliderController">
   <div class="well">
     <!-- Carousel -->
       <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
           <div class="item active">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-3" ng-repeat="slider in top12_part1"> 
                 <div class="thumbnail">
-                      <img src="/img/tests/demo-shirt.png" alt="Slide11"  height="200">
+                      <img src="{{ slider.image }}" alt="Slide11"  height="200">
                     <div class="caption">
                       <center>
                         <p style="margin-bottom: 5px;">
-                          <a href="/product/1" class="btn btn-success" role="button">View</a>
-                          <a href="/product/1" class="btn btn-primary" role="button">12,99 €</a>
-                        </p>
-                      </center>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <img src="/img/tests/demo-shirt.png" alt="Slide11" height="200">
-                    <div class="caption">
-                      <center>
-                        <p style="margin-bottom: 5px;">
-                          <a href="/product/1" class="btn btn-success" role="button">View</a>
-                          <a href="/product/1" class="btn btn-primary" role="button">12,99 €</a>
-                        </p>
-                      </center>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <img src="/img/tests/demo-shirt.png" alt="Slide11">
-                    <div class="caption">
-                      <center>
-                        <p style="margin-bottom: 5px;">
-                          <a href="/product/1" class="btn btn-success" role="button">View</a>
-                          <a href="/product/1" class="btn btn-primary" role="button">12,99 €</a>
-                        </p>
-                      </center>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <img src="/img/tests/demo-shirt.png" alt="Slide11">
-                    <div class="caption">
-                      <center>
-                        <p style="margin-bottom: 5px;">
-                          <a href="/product/1" class="btn btn-success" role="button">View</a>
+                          <a href="{{ slider.url }}" class="btn btn-success" role="button">View</a>
                           <a href="/product/1" class="btn btn-primary" role="button">12,99 €</a>
                         </p>
                       </center>
