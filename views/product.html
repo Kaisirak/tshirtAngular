@@ -23,6 +23,7 @@
           <option ng-repeat="size in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{size}}">{{size}}</option>
         </select>
       </div>
+      <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.product_variants[selectedVariant].price | currency}}</a>
 
       <!--div class="col-xs-12 col-md-6">
         <figure class="text-center">
