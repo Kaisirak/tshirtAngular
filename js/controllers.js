@@ -442,6 +442,8 @@ function pathalize(name) {
 					console.log($scope.currentProd);
 					for (var i = 0; i < $scope.currentProd.product_variants.length; i++)
 					{
+						if (!$scope.colorSize[$scope.currentProd.product_variants[i].color_hex])
+							$scope.colorSize[$scope.currentProd.product_variants[i].color_hex] = [];
 						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex].push($scope.currentProd.product_variants[i].size);
 					}
 					console.log($scope.colorSize);
