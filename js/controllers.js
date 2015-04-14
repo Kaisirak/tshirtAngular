@@ -445,7 +445,7 @@ function pathalize(name) {
 					{
 						if (!$scope.colorSize[$scope.currentProd.product_variants[i].color_hex])
 							$scope.colorSize[$scope.currentProd.product_variants[i].color_hex] = [];
-						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex].push($scope.currentProd.product_variants[i].size);
+						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex].push({size:$scope.currentProd.product_variants[i].size, price: $scope.currentProd.product_variants[i].price});
 					}
 					console.log($scope.colorSize);
 				}, function(error){
