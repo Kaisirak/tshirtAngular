@@ -368,6 +368,10 @@ function pathalize(name) {
 		$scope.currentProd = {};
 		$scope.selectedVariant = 0;
 
+		$scope.setSelectedVariant = function(index){
+			$scope.selectedVariant = index;
+		};
+
 		$scope.getProd = function(){
 			$http.get('http://api.shirtnexus.com/admin/products/' + $routeParams.slug).then(
 				function(response){
