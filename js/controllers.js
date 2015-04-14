@@ -180,7 +180,7 @@ function pathalize(name) {
 			api_url: apiurl
 		};
 
-		
+
 		this.productList = [];
 
 		$scope.artworkList = [{color: '#fefefe', txt: 'Alien'},
@@ -390,7 +390,7 @@ function pathalize(name) {
 			this.curSelectedSize = this.curSelected.sizes[0];*/
 		};
 	}]);
-	
+
 	app.controller('SliderController', ["$http", "$scope",
 		function($http, $scope) {
 			$scope.top12_part1 = [];
