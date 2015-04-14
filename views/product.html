@@ -14,7 +14,7 @@
         <span ng-bind="currentProd.description"></span>
       </div>
       <div>
-        <img ng-repeat="variant in currentProd.product_variants" ng-src="'http://cdn.local/design_thumbnails/' + {{variant.image}}">
+        <img ng-repeat="variant in currentProd.product_variants" ng-src="http://cdn.local/design_thumbnails/{{variant.image}}">
       </div>
 
         <div class="col-xs-12 col-md-6">
