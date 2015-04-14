@@ -401,14 +401,15 @@ function pathalize(name) {
 				function(response){
 					if (typeof response.data !== undefined) {
 						var data = response.data;
+						console.log(data);
 						var i = 0;
 						angular.forEach(data, function(product, key) {
 							if (i < 4)
-								$scope.top12_part1.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+								$scope.top12_part1.push( { 'image'  : product.thumbnail, 'url' : '/product/'+product.product.id , 'price' : product.price});
 							if (i >= 4 && i < 8)
-								$scope.top12_part2.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+								$scope.top12_part2.push( { 'image'  : product.thumbnail, 'url' : '/product/'+product.product.id , 'price' : product.price});
 							if (i >= 8)
-								$scope.top12_part3.push( { 'image'  : product.thumbnail, 'url' : '/products/'+product.product.id });
+								$scope.top12_part3.push( { 'image'  : product.thumbnail, 'url' : '/product/'+product.product.id , 'price' : product.price});
 							i++;
 						});
 
