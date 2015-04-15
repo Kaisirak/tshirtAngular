@@ -449,7 +449,7 @@ function pathalize(name) {
 							$scope.colorSize[$scope.currentProd.product_variants[i].color_hex] = {};
 						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex][$scope.currentProd.product_variants[i].size] = $scope.currentProd.product_variants[i].price;
 					}
-					$sce.trustAsHtml($scope.currentProd.description);
+					$scope.currentProd.description = $sce.trustAsHtml($scope.currentProd.description);
 					console.log($scope.colorSize);
 				}, function(error){
 					console.log(error);
