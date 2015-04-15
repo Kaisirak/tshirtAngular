@@ -40,7 +40,7 @@ function pathalize(name) {
 }
 
 (function(){
-	var app = angular.module('main-app', ['ngAnimate', 'ngRoute', 'angular-carousel']);
+	var app = angular.module('main-app', ['ngAnimate', 'ngRoute', 'angular-carousel','ngSanitize']);
 
 	app.config(["$routeProvider" , "$locationProvider", function($routeProvider, $locationProvider){
 		$routeProvider.when("/", {redirectTo: "/home"})
