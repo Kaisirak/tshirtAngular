@@ -431,7 +431,7 @@ function pathalize(name) {
 		$scope.colorSize = {};
 		$scope.goodProd = {};
 		$scope.selectedVariant = 0;
-		$scope.selectedSize = "med";
+		$scope.selectedSize = "lrg";
 
 		$scope.setSelectedVariant = function(index){
 			$scope.selectedVariant = index;
