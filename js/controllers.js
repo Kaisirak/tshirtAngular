@@ -431,11 +431,10 @@ function pathalize(name) {
 		$scope.colorSize = {};
 		$scope.goodProd = {};
 		$scope.selectedVariant = 0;
-		$scope.selectedSize = "med";
+		$scope.selectedSize = "lrg";
 
 		$scope.setSelectedVariant = function(index){
 			$scope.selectedVariant = index;
-			console.log($scope.currentProd.product_variants[$scope.selectedVariant].color_hex);
 		};
 
 		$scope.getProd = function(){
@@ -450,7 +449,6 @@ function pathalize(name) {
 						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex][$scope.currentProd.product_variants[i].size] = $scope.currentProd.product_variants[i].price;
 					}
 					$scope.currentProd.description = $sce.trustAsHtml($scope.currentProd.description);
-					console.log($scope.colorSize);
 				}, function(error){
 					console.log(error);
 				}
