@@ -429,7 +429,9 @@ function pathalize(name) {
 	function($http, $routeParams, $scope, $sce) {
 		$scope.currentProd = {};
 		$scope.colorSize = {};
+		$scope.goodProd = {};
 		$scope.selectedVariant = 0;
+		$scope.selectedSize = "med";
 
 		$scope.setSelectedVariant = function(index){
 			$scope.selectedVariant = index;
@@ -444,8 +446,8 @@ function pathalize(name) {
 					for (var i = 0; i < $scope.currentProd.product_variants.length; i++)
 					{
 						if (!$scope.colorSize[$scope.currentProd.product_variants[i].color_hex])
-							$scope.colorSize[$scope.currentProd.product_variants[i].color_hex] = [];
-						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex].push({size:$scope.currentProd.product_variants[i].size, price: $scope.currentProd.product_variants[i].price});
+							$scope.colorSize[$scope.currentProd.product_variants[i].color_hex] = {};
+						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex][$scope.currentProd.product_variants[i].size] = $scope.currentProd.product_variants[i].price;
 					}
 					console.log($scope.colorSize);
 				}, function(error){

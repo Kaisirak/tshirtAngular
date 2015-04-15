@@ -19,11 +19,11 @@
         <ul class="color-container">
           <li ng-repeat="variant in currentProd.product_variants | unique:'color_hex'" ng-click="setSelectedVariant(currentProd.product_variants.indexOf(variant))" class="color-preview ng-scope" title="{{variant.color_name}}" style="background-color:#{{variant.color_hex}}; {{selectedVariant == currentProd.product_variants.indexOf(variant)?'border: 3px solid red;':''}}"></li>
         </ul>
-        <select>
-          <option ng-repeat="obj in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{obj.size}}">{{obj.size}}</option>
+        <select ng-model="selectedSize">
+          <option ng-repeat="obj in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{obj}}">{{obj}}</option>
         </select>
       </div>
-      <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{currentProd.product_variants[selectedVariant].price | currency}}</a>
+      <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{colorSize[currentProd.product_variants[selectedVariant].color_hex][selectedSize] | currency}}</a>
 
       <!--div class="col-xs-12 col-md-6">
         <figure class="text-center">
