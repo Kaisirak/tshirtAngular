@@ -40,7 +40,7 @@ function pathalize(name) {
 }
 
 (function(){
-	var app = angular.module('main-app', ['ngAnimate', 'ngRoute', 'angular-carousel','ngSanitize']);
+	var app = angular.module('main-app', ['ngAnimate', 'ngRoute', 'angular-carousel']);
 
 	app.config(["$routeProvider" , "$locationProvider", function($routeProvider, $locationProvider){
 		$routeProvider.when("/", {redirectTo: "/home"})
@@ -449,6 +449,7 @@ function pathalize(name) {
 							$scope.colorSize[$scope.currentProd.product_variants[i].color_hex] = {};
 						$scope.colorSize[$scope.currentProd.product_variants[i].color_hex][$scope.currentProd.product_variants[i].size] = $scope.currentProd.product_variants[i].price;
 					}
+					$scope.currentProd.description = $sce.trustAsHtml($scope.currentProd.description);
 					console.log($scope.colorSize);
 				}, function(error){
 					console.log(error);
