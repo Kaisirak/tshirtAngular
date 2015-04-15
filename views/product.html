@@ -20,7 +20,7 @@
           <li ng-repeat="variant in currentProd.product_variants | unique:'color_hex'" ng-click="setSelectedVariant(currentProd.product_variants.indexOf(variant))" class="color-preview ng-scope" title="{{variant.color_name}}" style="background-color:#{{variant.color_hex}}; {{selectedVariant == currentProd.product_variants.indexOf(variant)?'border: 3px solid red;':''}}"></li>
         </ul>
         <select ng-model="selectedSize">
-          <option ng-repeat="obj in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{obj}}">{{obj}}</option>
+          <option ng-repeat="(key, val) in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{key}}">{{key}}</option>
         </select>
       </div>
       <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{colorSize[currentProd.product_variants[selectedVariant].color_hex][selectedSize] | currency}}</a>
