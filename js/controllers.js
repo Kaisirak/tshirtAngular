@@ -99,8 +99,8 @@ function pathalize(name) {
 				$scope.displayList = angular.copy($scope.ngGridItemsList);
 
 				$scope.$watch(function(scope){
-					console.log(scope);
-						return scope.ngGridItemsList;
+					console.log(scope.ngGridItemsList.length);
+						return scope.ngGridItemsList.length;
 					},
 					function(newval){
 						$scope.displayList = angular.copy($scope.ngGridItemsList);
