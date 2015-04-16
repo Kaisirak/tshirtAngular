@@ -71,7 +71,7 @@ function pathalize(name) {
 				ngGridItemsHeight: '=?',
 				ngGridItemsFilter: '=?'
 			},
-			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; -webkit-transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}});opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span></li></ul>',
+			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; -webkit-transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}});opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span><div class="thumbnail"><img src="http://cdn.shirtnexus.com/design_thumbnails/8cb98a5639218bbc1d29a9ee32893953.png" alt="Slide11" height="200"><div class="caption"><center><p style="margin-bottom: 5px;"><a href="/product/10" class="btn btn-success" role="button">View</a><a href="/product/10" class="btn btn-primary ng-binding" role="button">$24.99</a></p></center></div></div></li></ul>',
 			controller: ['$scope', '$timeout', function($scope, $timeout){
 
 				$scope.divWidth = 600;
@@ -183,19 +183,31 @@ function pathalize(name) {
 
 		this.productList = [];
 
-		$scope.artworkList = [{color: '#fefefe', txt: 'Alien'},
-													{color: '#fefefe', txt: 'Plane'},
-													{color: '#fefefe', txt: 'Dog'},
-													{color: '#fefefe', txt: 'Thing'},
-													{color: '#fefefe', txt: 'Lel'},
-													{color: '#fefefe', txt: 'Games'},
-													{color: '#fefefe', txt: 'Other Things'}]
+		$scope.artworkList = [];/*[{color: '#fefefe', txt: 'Alien'},
+		/*					{color: '#fefefe', txt: 'Plane'},
+							{color: '#fefefe', txt: 'Dog'},
+							{color: '#fefefe', txt: 'Thing'},
+							{color: '#fefefe', txt: 'Lel'},
+							{color: '#fefefe', txt: 'Games'},
+							{color: '#fefefe', txt: 'Other Things'}]*/
+				
 
 		var mainProductList = [ 'Hoodies','Short Sleeve Shirts','Long Sleeve Shirts','Mugs','Phone cases','Sweatshirts' ];
 		this.productCompleteList = [];
 		myThis = this;
 
-		//$http.get('http://api.shirtfull.com/products').
+		$http.get($scope.main.api_url+'/admin/products').
+		  	success(function(data, status, headers, config) {
+		  		var products = angular.fromJson(data);
+		    	angular.forEach(products, function(product, key) {
+		    		$scope.artworkList.push( {color: '#fefefe', txt: product.name} );
+				});
+				console.log($scope.artworkList);
+			}).
+			error(function(data, status, headers, config) {
+		    	console.log(data);
+	  		});
+
 		$http.get($scope.main.api_url+'/products').
 		  	success(function(data, status, headers, config) {
 		  		var products = angular.fromJson(data);
