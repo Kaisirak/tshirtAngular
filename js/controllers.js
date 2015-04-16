@@ -105,6 +105,8 @@ function pathalize(name) {
 					function(newval){
 						$scope.displayList = angular.copy($scope.ngGridItemsList);
 						console.log("changing display list");
+						$scope.showAll();
+						$scope.setSize();
 					}
 				);
 
