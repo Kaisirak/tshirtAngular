@@ -71,7 +71,8 @@ function pathalize(name) {
 				ngGridItemsHeight: '=?',
 				ngGridItemsFilter: '=?'
 			},
-			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; -webkit-transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}});opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span><div class="thumbnail"><img src="http://cdn.shirtnexus.com/design_thumbnails/8cb98a5639218bbc1d29a9ee32893953.png" alt="Slide11" height="200"><div class="caption"><center><p style="margin-bottom: 5px;"><a href="/product/10" class="btn btn-success" role="button">View</a><a href="/product/10" class="btn btn-primary ng-binding" role="button">$24.99</a></p></center></div></div></li></ul>',
+			template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; -webkit-transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}});opacity: {{item.active?1:0}}"> <div class="thumbnail" style="height:300px;">  <div class="caption"><center><p>{{ item.txt }}</p></center></div> <img src="{{ item.img }}" alt="Slide11" height="200"><div class="caption"><center><p style="margin-bottom: 5px;"><a href="{{ item.url }}" class="btn btn-success" role="button">View</a><a href="{{ item.url }}" class="btn btn-primary ng-binding" role="button">{{ item.price }}</a></p></center></div></div></li></ul>',
+			//template: '<ul class="cs-grid-items"><li ng-repeat="item in displayList" style="height: {{itemHeight}}px; width: {{itemWidth}}px; background-color: {{item.color}}; -webkit-transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}}); transform: translate3D({{item.positionX}}px, {{item.positionY}}px, 0px) scale3D({{item.active?1:0.001}},{{item.active?1:0.001}},{{item.active?1:0.001}});opacity: {{item.active?1:0}}"><span class="grid-items-content" ng-bind="item.txt"></span><div class="thumbnail"><img src="{{ item.img }}" alt="Slide11" height="200"><div class="caption"><center><p style="margin-bottom: 5px;"><a href="{{ item.url }}" class="btn btn-success" role="button">View</a><a href="{{ item.url }}" class="btn btn-primary ng-binding" role="button">{{ item.price }}</a></p></center></div></div></li></ul>',
 			controller: ['$scope', '$timeout', function($scope, $timeout){
 
 				$scope.divWidth = 600;
@@ -199,8 +200,9 @@ function pathalize(name) {
 		$http.get($scope.main.api_url+'/admin/products').
 		  	success(function(data, status, headers, config) {
 		  		var products = angular.fromJson(data);
+		  		console.log(products);
 		    	angular.forEach(products, function(product, key) {
-		    		$scope.artworkList.push( {color: '#fefefe', txt: product.name} );
+		    		$scope.artworkList.push( {color: '#fefefe', txt: product.product_parent.name, img: product.thumbnail, price: product.price, url: '/product/'+product.product_parent.id} );
 				});
 				console.log($scope.artworkList);
 			}).
