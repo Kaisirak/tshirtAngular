@@ -99,13 +99,10 @@ function pathalize(name) {
 				$scope.displayList = angular.copy($scope.ngGridItemsList);
 
 				$scope.$watch(function(scope){
-					console.log(scope.ngGridItemsList.length);
 						return scope.ngGridItemsList.length;
 					},
 					function(newval){
 						$scope.displayList = angular.copy($scope.ngGridItemsList);
-						console.log("changing display list");
-						console.log($scope.displayList);
 						$scope.showAll();
 						$scope.setSize();
 						$scope.updateView();
@@ -121,7 +118,7 @@ function pathalize(name) {
 					{
 						for(var i = 0; i < $scope.displayList.length; i++)
 						{
-							if ($scope.displayList[i].txt.indexOf($scope.ngGridItemsFilter) > -1)
+							if ($scope.displayList[i].txt.toLowerCase().indexOf($scope.ngGridItemsFilter.toLowerCase()) > -1)
 								$scope.displayList[i].active = true;
 							else
 								$scope.displayList[i].active = false;
