@@ -32,12 +32,18 @@
         <div><ul class="color-container">
           <li ng-repeat="variant in currentProd.product_variants | unique:'color_hex'" ng-click="setSelectedVariant(currentProd.product_variants.indexOf(variant))" class="color-preview ng-scope" title="{{variant.color_name}}" style="background-color:#{{variant.color_hex}}; {{selectedVariant == currentProd.product_variants.indexOf(variant)?'border: 4px double white;width: 32px;height: 32px;margin-top: 0;':''}}"></li>
         </ul></div>
-        <div><select ng-model="selectedSize">
+        <div><select class="form-control" style="width:80px;" ng-model="selectedSize">
           <option ng-repeat="(key, val) in colorSize[currentProd.product_variants[selectedVariant].color_hex]" value="{{key}}">{{key}}</option>
         </select></div>
         <div style="  margin-top: 10px;">
           <a class="btn btn-large btn-success text-center" href="javascript:;"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{colorSize[currentProd.product_variants[selectedVariant].color_hex][selectedSize] | currency}}</a>
           <div class="fb-share-button" data-href="" data-layout="button_count"></div>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="Selkuuu">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="//pinterest.com/pin/create/button/?url=&amp;media=http::" data-pin-do="buttonPin" data-pin-config="none">
+  <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+</a>
+<script async src="//assets.pinterest.com/js/pinit.js"></script>
         </div>
       </div>
 
