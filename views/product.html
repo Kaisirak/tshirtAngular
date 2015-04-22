@@ -25,6 +25,7 @@
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="review in reviewList"><b>{{review.author}}</b> - {{review.review}}</li>
         </ul>
+        <p ng-show="reviewList.length == 0" class="">There are no reviews yet...</p>
     </div>
 
       </div>
@@ -43,11 +44,11 @@
         <div style="  margin-top: 10px;">
           <div class="fb-share-button" data-href="" data-layout="button_count"></div>
           <a href="https://twitter.com/share" class="twitter-share-button" data-via="Selkuuu">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<a href="//pinterest.com/pin/create/button/?url=&amp;media=http::" data-pin-do="buttonPin" data-pin-config="none">
-  <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-</a>
-<script async src="//assets.pinterest.com/js/pinit.js"></script>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <a href="//pinterest.com/pin/create/button/?url=&amp;media=http::" data-pin-do="buttonPin" data-pin-config="none">
+            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+          </a>
+        <script async src="//assets.pinterest.com/js/pinit.js"></script>
         </div>
       </div>
 
