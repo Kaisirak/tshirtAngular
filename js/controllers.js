@@ -253,6 +253,7 @@ function pathalize(name) {
 		};
 
 		this.addProductToCart = function(obj, variant, varprice) {
+			console.log(obj);
 			var cartObj = {size: variant.size, color: obj.product_variants[variant.colorid].name, prod: obj.name, price: varprice};
 			this.cart.push(cartObj);
 			$('#cartModal').modal('show');
