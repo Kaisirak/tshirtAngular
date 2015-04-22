@@ -456,7 +456,7 @@ function pathalize(name) {
 		$scope.currentProd = {};
 		$scope.colorSize = {};
 		$scope.goodProd = {};
-		$scope.selectedVariant = {colorid: 0, size = "lrg"};
+		$scope.selectedVariant = {colorid: 0, size: "lrg"};
 
 		$scope.reviewList = [];
 
