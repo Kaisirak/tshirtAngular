@@ -456,12 +456,12 @@ function pathalize(name) {
 		$scope.currentProd = {};
 		$scope.colorSize = {};
 		$scope.goodProd = {};
-		$scope.selectedVariant = 0;
-		$scope.selectedSize = "lrg";
+		$scope.selectedVariant = {colorid: 0, size = "lrg"};
+
 		$scope.reviewList = [];
 
 		$scope.setSelectedVariant = function(index){
-			$scope.selectedVariant = index;
+			$scope.selectedVariant.colorid = index;
 		};
 
 		$scope.getProd = function(){
