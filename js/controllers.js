@@ -458,6 +458,7 @@ function pathalize(name) {
 		$scope.goodProd = {};
 		$scope.selectedVariant = 0;
 		$scope.selectedSize = "lrg";
+		$scope.reviewList = [];
 
 		$scope.setSelectedVariant = function(index){
 			$scope.selectedVariant = index;
@@ -476,6 +477,17 @@ function pathalize(name) {
 					}
 					$scope.currentProd.description = $sce.trustAsHtml($scope.currentProd.description);
 				}, function(error){
+					console.log(error);
+				}
+			);
+		};
+
+		$scope.getReviews = function(){
+			$http.get('http://api.shirtnexus.com/admin/reviews/' + $routeParams.slug).then(
+				function(response){
+					$scope.reviewList = response.data;
+				},
+				function(error){
 					console.log(error);
 				}
 			);
