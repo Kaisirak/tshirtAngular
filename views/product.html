@@ -39,7 +39,7 @@
           <option ng-repeat="(key, val) in colorSize[currentProd.product_variants[selectedVariant.colorid].color_hex]" value="{{key}}">{{key}}</option>
         </select></div>
         <div style="  margin-top: 10px;">
-          <a class="btn btn-large btn-success text-center" href="javascript:;" ng-click="mainCtrl.openCart()"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{colorSize[currentProd.product_variants[selectedVariant.colorid].color_hex][selectedVariant.size] | currency}}</a>
+          <a class="btn btn-large btn-success text-center" href="javascript:;" ng-click="mainCtrl.addProdToCart(currentProd, selectedVariant, colorSize[currentProd.product_variants[selectedVariant.colorid].color_hex][selectedVariant.size])"><i class="fa fa-shopping-cart"></i> ADD TO CART - {{colorSize[currentProd.product_variants[selectedVariant.colorid].color_hex][selectedVariant.size] | currency}}</a>
         </div>
         <div style="  margin-top: 10px;">
           <div class="fb-share-button" data-href="" data-layout="button_count"></div>

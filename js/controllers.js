@@ -252,6 +252,12 @@ function pathalize(name) {
 			$('#cartModal').modal('show');
 		};
 
+		this.addProductToCart = function(obj, variant, varprice) {
+			var cartObj = {size: variant.size, color: obj.product_variants[variant.colorid].name, prod: obj.name, price: varprice};
+			this.cart.push(cartObj);
+			$('#cartModal').modal('show');
+		};
+
 		this.total = function() {
 			var mytotal = 0;
 			for (var i = 0; i < this.cart.length; i++)
