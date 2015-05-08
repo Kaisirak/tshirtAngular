@@ -146,7 +146,6 @@ function pathalize(name) {
 
 							$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
 							$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
-							console.log(iElement[0].offsetWidth);
 							if ($scope.displayList[i].active)
 								iAct++;
 
@@ -162,6 +161,7 @@ function pathalize(name) {
 								$timeout(function(){
 									scope.divX = iElement[0].offsetLeft;
 									scope.divY = iElement[0].offsetTop;
+									console.log(iElement[0].offsetWidth);
 									scope.divWidth = Math.floor(iElement[0].offsetWidth / scope.itemWidth) * scope.itemWidth;
 									scope.updateView();
 									iElement.css('height', scope.divHeight);
