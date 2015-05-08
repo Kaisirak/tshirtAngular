@@ -143,8 +143,7 @@ function pathalize(name) {
 						{
 							var posX = ((iAct * $scope.itemWidth) % $scope.divWidth) / $scope.itemWidth;
 							var posY = Math.floor((iAct * $scope.itemWidth) / $scope.divWidth);
-							console.log($scope.realWidth - $scope.divWidth);
-							$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX;
+							$scope.displayList[i].positionX = ((iAct * $scope.itemWidth) % $scope.divWidth) + posX * $scope.itemRightMargin + $scope.divX + (($scope.realWidth - $scope.divWidth) / 2);
 							$scope.displayList[i].positionY = (Math.floor((iAct * $scope.itemWidth) / $scope.divWidth) * $scope.itemHeight) + posY * $scope.itemBottomMargin + $scope.divY;
 							if ($scope.displayList[i].active)
 								iAct++;
